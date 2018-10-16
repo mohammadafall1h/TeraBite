@@ -18,31 +18,25 @@ module.exports.init = function() {
   app.use(bodyParser.json());
 
   //Serve client side files like html and css
-  app.use(express.static(path.resolve('./client/htmls')));
-  app.use(express.static(path.resolve('./client/htmls')));
-  app.use(express.static(path.resolve('./client/htmls')));
+  app.use(express.static(path.resolve('./client')));
 
   //default to homepage
-  /* UNCOMMENT THIS WHEN WE GET HOMEPAGE IN CLIENT
   app.get('/', function(req, res){
-    res.sendFile(path.join(__dirname + '../../../client/home.html'));
+    res.sendFile(path.join(__dirname + '../../../client/htmls/map_table_page.html'));
   });
-  */
 
-  app.get('/login', function(req, res){
-    res.sendFile(path.join(__dirname + '../../../client/login_page/Login.html'));
+  app.get('/signin', function(req, res){
+    res.sendFile(path.join(__dirname + '../../../client/htmls/Login.html'));
   });
 
   app.get('/signup', function(req, res){
-    res.sendFile(path.join(__dirname + '../../../client/create_page/Create.html'));
+    res.sendFile(path.join(__dirname + '../../../client/htmls/Create.html'));
   });
 
   // redirect anything that isnt an pathname specified above
-  /* UNCOMMENT THIS WHEN WE GET HOMEPAGE IN CLIENT
   app.get('*', function(req, res){
       res.redirect('/');
   });
-  */
 
   return app;
 };
