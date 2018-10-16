@@ -3,7 +3,7 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style type="text/css">
-    @import url("style.css");
+    @import url("../css/map_style.css");
     </style>
   </head>
   <body ng-app="directoryApp">
@@ -26,7 +26,7 @@
 
     <!--__________SearchBegin__________-->
         <a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-search"></span> Search 
+          <span class="glyphicon glyphicon-search"></span> Search
         </a>
     <!--__________SearchEnd__________-->
 
@@ -39,14 +39,14 @@
         <!--__________LogInBegin__________-->
         <a href="#" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-log-in"></span> Log in
-		</a>	
+		</a>
     </div>
     <!--__________LogInEnd__________-->
 	  </div>
       <div class="row" ng-controller="ListingsController">
         <div class="col-md-6">
           <div class="input-group" id="searchBar">
-               
+
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
             <input type="text" class="form-control" placeholder="Search" ng-model ="searchText">
           </div>
@@ -55,17 +55,17 @@
               <tr>
                 <th>Organization</th>
                 <th>Address</th>
-				  
+
                 <th>
 					Type of food
               </th>
               </tr>
-            
+
               <tr ng-repeat="Org in Orgs" >
-                <td class="Organization" > 
+                <td class="Organization" >
                   OGC
                 </td>
-                <td class= "Building Name"> 
+                <td class= "Building Name">
                    somewhere
                 </td>
 				  <td class="Type of food">
@@ -74,7 +74,7 @@
 
              </tr>
 
-        
+
             </table>
           </div>
 </div>

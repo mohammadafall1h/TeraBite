@@ -10,10 +10,10 @@ body{
 }
 /*__________Background Image End__________*/
 
-/*__________Transparent Login Box Backgroung Begin__________*/
-.login-box{
+/*__________Transparent Create Box Backgroung Begin__________*/
+.Create-box{
     width: 320px;
-    height: 420px;
+    height: 500px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 50%;
@@ -23,10 +23,10 @@ body{
     box-sizing: border-box;
     padding: 70px 30px;
 }
-/*__________Transparent Login Box Backgroung End__________*/
+/*__________Transparent Create Box Backgroung End__________*/
 
 
-/*__________Design Login Box Begin__________*/
+/*__________Design Create Box Begin__________*/
 
 /*__________Avatar Design Format__________*/
 .avatar{
@@ -41,7 +41,7 @@ body{
     left: calc(50% - 50px);
 }
 
-/*__________Formarting Position of "Login Here"__________*/
+/*__________Formarting Position of "User Account Info"__________*/
 h1{
     margin: 0;
     padding: 0 0 20px;
@@ -50,20 +50,20 @@ h1{
 }
 
 /*__________Formarting Text for <p> "Unsername & Password"__________*/
-.login-box p{
+.Create-box p{
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
 
 /*__________Formarting Input Box Width & Bottom Spacing__________*/
-.login-box input{
+.Create-box input{
     width: 100%;
     margin-bottom: 20px;
 }
 
 /*__________Formarting Input Box__________*/
-.login-box input[type="text"], input[type="password"]{
+.Create-box input[type="text"], input[type="password"]{
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -74,8 +74,8 @@ h1{
     font-size: 16px;
 }
 
-/*__________Formarting Login Input Box__________*/
-.login-box input[type="submit"]{
+/*__________Formarting Submit Input Box__________*/
+.Create-box input[type="submit"]{
 	/*__________Background Box Format__________*/
     border: none;
     outline: none;
@@ -87,22 +87,10 @@ h1{
     font-size: 18px;
 }
 
-/*__________Hovering over Login Input Box__________*/
-.login-box input[type="submit"]:hover{
+/*__________Hovering over Submit Input Box__________*/
+.Create-box input[type="submit"]:hover{
     cursor: pointer;
     background: #39dc79;
     color: #000;
-}
-
-/*__________Formarting "Forget Password"__________*/
-.login-box a{
-    text-decoration: none;
-    font-size: 14px;
-    color: #fff;
-}
-
-/*__________Hovering over "Forget Password"__________*/
-.login-box a:hover{
-    color: #39dc79;
 }
 /*__________Design Login Box End__________*/
