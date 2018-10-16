@@ -1,0 +1,51 @@
+
+body{
+	background-color: #272727;
+	font-family: sans-serif;
+	
+}
+#searchBar {
+	border:  4px solid #00045B;
+  margin: 15px 10px;
+
+}
+table{
+	border: 4px solid #00045B;
+	font-family: sans-serif;
+}
+th {
+    background-color: #424242;
+    color: white;
+}
+td{
+	
+    color: white;
+	
+}
+td:hover {
+	background-color: darkorange;
+}
+h1{
+	color: white;
+	margin: 0;
+    text-align: center;
+    font-size: 30px;
+	font-family: sans-serif;
+}
+.btn{
+	background-color: darkorange;
+		font-family: sans-serif;
+}
+.btn:hover{
+	background-color: darkblue;
+
+}
+col{
+	border:  4px solid #00045B;
+}
+/* CSS Document */
+
+
+.text-center {
+	
+}
