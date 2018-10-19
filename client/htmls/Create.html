@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../css/create_style.css">
       <!--####################################################################################################################
         #####################################################################################################################-->
-        <title>Terabite Accout Creation</title>
+        <title>UF Food Accout Creation</title>
 
   </div>
   <div class="navigation">
@@ -13,7 +13,7 @@
 
     <!--__________HomeBegin__________-->
     <<div align="left" class="container">
-        <a href="/" class="btn btn-primary btn-small" >
+        <a href="#" class="btn btn-primary btn-small" >
           <span class="glyphicon glyphicon-home"></span> Home
         </a>
     <!--__________HomeEnd__________-->
@@ -58,8 +58,25 @@
             <!--__________Repeat Password Text__________-->
             <p>Repeat Password</p>
             <input type="password" name="password" placeholder="Re-enter Password">
+            <!--__________Event Organizer__________-->
+            <p>Are you a event organizer?</p>
+            <!-- Default unchecked -->
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+              <label class="custom-control-label" for="defaultUnchecked">Yes</label>
+            </div>
+
+            <!-- Default checked -->
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
+              <label class="custom-control-label" for="defaultChecked">No</label>
+            </div>
+
+    		<!--__________LineSpace__________-->
+    		<p><br>
             <!--__________Submit Input (Button)__________-->
             <input type="submit" name="submit" value="Submit">
+            <a href="/signin" class="hyperlink">Already a user? Log In</a>
             </form>
             <!--__________Form End__________-->
                </div>
@@ -69,7 +86,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
     <script src="app.js"></script>
-    <script src="listingController.js"></script>
-    <script src="listingFactory.js"></script>
   </body>
 </html>

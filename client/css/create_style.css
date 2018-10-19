@@ -13,7 +13,7 @@ body{
 /*__________Transparent Create Box Backgroung Begin__________*/
 .Create-box{
     width: 320px;
-    height: 500px;
+    height: 600px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 50%;
@@ -94,3 +94,18 @@ h1{
     color: #000;
 }
 /*__________Design Login Box End__________*/
+
+/*__________Radio Button CSS STart___________*/
+.Create-box input[type="submit"]{
+  display: inline;
+}
+/*__________Radio Button CSS STart___________*/
+
+/*______________Hyperlinks to other site pages begin______________*/
+.hyperlink{
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  color: #fff;
+}
+/*______________Hyperlinks to other site pages end______________*/
