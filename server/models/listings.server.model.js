@@ -35,6 +35,18 @@ var eventSchema = new Schema({
   owner: {
     type: String,
     required: true
+  },
+  date: { 
+  	type: Date,
+  	required: true
+  }, 
+  time: { 
+  	type: time,
+  	required: true
+  }, 
+  food: { 
+  	type: String,
+  	required: true
   }
 });
 
