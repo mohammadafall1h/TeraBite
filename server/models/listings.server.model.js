@@ -11,6 +11,7 @@ var userSchema = new Schema({
   username: {
     type: String,
     required: true
+    unique: true
   }
   pass: {
     type: String,
@@ -49,6 +50,7 @@ var eventSchema = new Schema({
   	required: true
   }
 });
+eventSchema.index({ address: 1, date: 1 ,time: 1}, { unique: true });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property
 listingSchema.pre('save', function(next) {
