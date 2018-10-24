@@ -6,12 +6,12 @@ var mongoose = require('mongoose'),
 var userSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
     unique: true
   },
   username: {
     type: String,
-    required: true
+    required: true,
     unique: true
   },
   pass: {
@@ -46,7 +46,7 @@ var eventSchema = new Schema({
   	required: true
   },
   time: {
-  	type: time,
+  	type: Number,
   	required: true
   },
   food: {
@@ -68,8 +68,8 @@ listingSchema.pre('save', function(next) {
 }); */
 
 /* Use your schema to instantiate a Mongoose model */
-var users = mongoose.model('newUser',userSchema );
-var events = mongoose.model('newEvent',eventSchema );
+var users = mongoose.model('newUser', userSchema);
+var events = mongoose.model('newEvent', eventSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
 module.exports = users;
