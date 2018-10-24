@@ -13,11 +13,11 @@ var userSchema = new Schema({
     type: String,
     required: true
     unique: true
-  }
+  },
   pass: {
     type: String,
     required: true
-  }
+  },
   isEventCreator: {
     type: Boolean,
     required: true
@@ -29,7 +29,10 @@ var eventSchema = new Schema({
     type: String,
     required: true
   },
-  address: String
+  address: {
+    type: String,
+    recquired: true
+  },
   coordinates: {
     latitude: Number,
     longiude: Number
