@@ -7,6 +7,7 @@ var userSchema = new Schema({
   email: {
     type: String,
     required: true
+    unique: true
   },
   username: {
     type: String,
@@ -37,15 +38,15 @@ var eventSchema = new Schema({
     type: String,
     required: true
   },
-  date: { 
+  date: {
   	type: Date,
   	required: true
-  }, 
-  time: { 
+  },
+  time: {
   	type: time,
   	required: true
-  }, 
-  food: { 
+  },
+  food: {
   	type: String,
   	required: true
   }
