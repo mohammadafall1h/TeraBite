@@ -11,20 +11,50 @@ createApp.controller('createController', function($scope, createFactory){
   $scope.repeat;
   $scope.radio = "false"; //defaults to not an event creator
 
+  //variables to control organization name
+  $scope.org; //bound to text input, typing into text box changes orgUser
+  $scope.orgUser; //holds the saved the orgization name
+
+  $scope.required = true;
+
+  //updates orgUser whenever input box data changes
+  $scope.$watch('org', function(value) {
+    if($scope.radio === "true") {
+      $scope.orgUser = value;
+    }
+  });
+
+  //switches between saved orgUser and "No Orgization" based upon radio buttons
+  //also used jquery to change input box 'disabled' field based on radio buttons
+  $scope.$watch('radio', function(value) {
+    if(value === "false") {
+      $scope.org = "No Orginization";
+      //uses jquery to disable input field
+      $("#orgName").attr("disabled", true);
+    } else {
+      $scope.org = $scope.orgUser;  //set text box to saved orginzation name
+      //uses jquery to enable input field
+      $("#orgName").attr("disabled", false);
+    }
+  });
+
   //passes angular bound information to the backend function
   $scope.createUserAccount = function(){
     $scope.accInfo = {
         email: $scope.email,
         username: $scope.username,
         pass: $scope.pass,
-        isEventCreator: false
+        isEventCreator: false,
+        org: "No Org"
+    }
+
+    //set isEventCreator to true if radio button is on yes
+      if($scope.radio === "true"){
+        $scope.accInfo.isEventCreator = true;
+        $scope.accInfo.org = $scope.orgUser;
       }
 
-      //set isEventCreator to true if radio button is on yes
-      if($scope.radio === "true")
-        $scope.accInfo.isEventCreator = true;
-
-      //only send info in passwords match
+      //only send info if passwords match
       if($scope.pass === $scope.repeat){
         /*Passwords Match Send new account to be created*/
         createFactory.createUserAccount($scope.accInfo).then(function(response) {
@@ -40,6 +70,7 @@ createApp.controller('createController', function($scope, createFactory){
         $scope.pass = "";
         $scope.repeat = "";
         $scope.radio = "false";
+        $scope.orgUser = "";
       }
       else {
         //tell them to match passwords
