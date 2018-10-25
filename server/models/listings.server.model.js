@@ -21,6 +21,10 @@ var userSchema = new Schema({
   isEventCreator: {
     type: Boolean,
     required: true
+  },
+  org: {
+    type: String,
+    required: false
   }
 });
 
