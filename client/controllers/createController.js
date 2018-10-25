@@ -31,7 +31,7 @@ createApp.controller('createController', function($scope, createFactory){
           //do stuff on response
         }, function(error) {
           //do stuff on error
-          console.log('Unable to create new account:', error);
+          window.alert("There was an error: " + error);
         });
 
         //reset form data
@@ -43,6 +43,7 @@ createApp.controller('createController', function($scope, createFactory){
       }
       else {
         //tell them to match passwords
+        window.alert("Passwords do not match.");
       }
   }; //end createUserAccount
 
