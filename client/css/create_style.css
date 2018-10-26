@@ -48,75 +48,47 @@ h1 {
   height: 100%;
 }
 
-.split {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-}
-
-
 /*__________LeftSide__________*/
 
-/*__________Formarting Text for <p> "Unsername & Password"__________*/
-.splitleft-box p{
+/*__________Formarting Text for <p> on both forms__________*/
+.formControl p{
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
 
-/*__________Formarting Input Box Width & Bottom Spacing__________*/
-.splitleft-box input{
-    width: 100%;
-    margin-bottom: 20px;
+/*__________Formatting Input Box__________*/
+.formControl input[type="text"], input[type="password"]{
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  /*__________User Input Text Format__________*/
+  color: #fff;
+  font-size: 16px;
 }
 
-/*__________Formarting Input Box__________*/
-.splitleft-box input[type="text"], input[type="password"]{
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    /*__________User Input Text Format__________*/
-    color: #fff;
-    font-size: 16px;
-}
 /*__________Design Login Box End__________*/
 
 
 /*__________RightSide__________*/
 
-/*__________Formarting Text for <p> "Unsername & Password"__________*/
-.splitright-box p{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-}
-
 /*__________Formarting Input Box Width & Bottom Spacing__________*/
 .splitright-box input[type="radio"]{
-	margin-bottom: 0px;
+	margin-top: 10px;
+  margin-bottom: 30px;
 	outline: none;
 }
 
-/*__________Formarting Input Box__________*/
-.splitright-box input[type="text"], input[type="password"]{
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    /*__________User Input Text Format__________*/
-    color: #fff;
-    font-size: 16px;
+/* Space the radio buttons from each other */
+.splitright-box label {
+  margin-right: 10px;
 }
-/*__________Design Login Box End__________*/
 
-
-
-
-.SunmitButton {
+.SubmitButton {
     width: 300px;
     color: #fff;
     bottom: 0%;
@@ -127,7 +99,7 @@ h1 {
 }
 
 /*__________Formarting Submit Input Box__________*/
-.SunmitButton input[type="submit"]{
+.SubmitButton input[type="submit"]{
   /*__________Background Box Format__________*/
     border: none;
     outline: none;
@@ -142,13 +114,13 @@ h1 {
 }
 
 /*__________Formarting Input Box Width & Bottom Spacing__________*/
-.SunmitButton input{
+.SubmitButton input{
     width: 100%;
     margin-bottom: 20px;
 }
 
 /*__________Hovering over Submit Input Box__________*/
-.SunmitButton input[type="submit"]:hover{
+.SubmitButton input[type="submit"]:hover{
     cursor: pointer;
     background: #39dc79;
     color: #000;

@@ -31,6 +31,7 @@
   <!--__________NavigationEnd__________-->
 </div>
 <div class="formControl" ng-controller="createController">
+
 <div class="splitleft-box">
   <!--__________Source for Avatar Image__________-->
   <!--__________<img src="avatar.png" class="avatar">__________-->
@@ -65,9 +66,9 @@
   <form>
     <p> Are you an event Organizer?</p>
     <div>
-<input type="radio" id="eventOchoice1" name="radioBtn" value="true" ng-model="radio">
+      <input class="leftRadio" type="radio" id="eventOchoice1" name="radioBtn" value="true" ng-model="radio">
       <label for="eventOchoice1">Yes</label>
-<input type="radio" id="eventOchoice2" name="radioBtn" value="false" ng-model="radio">
+      <input class="rightRadio" type="radio" id="eventOchoice2" name="radioBtn" value="false" ng-model="radio">
       <label for="eventOchoice2">No</label>
     </div>
     <!--__________Email Text__________-->
@@ -80,7 +81,7 @@
   </form>
   <!--__________Form End__________-->
 </div>
-<div class="SunmitButton">
+<div class="SubmitButton">
   <!--__________Submit Input (Button)__________-->
   <input type="submit" name="submit" value="Submit" ng-click="createUserAccount()">
 </div>
