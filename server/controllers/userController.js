@@ -14,7 +14,13 @@ Things to fix:
 
 */
 
-/* Create an event */
+// not sure what to add for the login
+// will keep it commented for now
+// exports.login = function(req,res) {
+//
+// }
+
+// create user 
 exports.create = function(req, res) {
 
   var user = new userModel(req.body);
