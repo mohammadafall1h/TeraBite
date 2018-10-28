@@ -15,8 +15,6 @@ createApp.controller('createController', function($scope, createFactory){
   $scope.org; //bound to text input, typing into text box changes orgUser
   $scope.orgUser; //holds the saved the orgization name
 
-  $scope.required = true;
-
   //updates orgUser whenever input box data changes
   $scope.$watch('org', function(value) {
     if($scope.radio === "true") {
