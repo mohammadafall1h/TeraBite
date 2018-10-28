@@ -3,20 +3,15 @@ var events = require('../controllers/eventController.js'),
     express = require('express'),
     router = express.Router();
 
-//not sure what to do here
-router.route('/login')
-  .get(users.login);
+/* for calls to /api/functions/login */
+//router.route('/login');
 
+/* for calls to /api/functions/user */
 router.route('/user')
-  .get(users.create);
+  .post(users.create);
 
 
-router.route('/event')
-  .get(events.create);
-
-
-//not sure if we need this but I will add it
-router.param('listingId',events.listingByID);
-router.param('listingByID',users.listingByID);
+/* for calls to /api/functions/event */
+//router.route('/event');
 
 module.exports = router;

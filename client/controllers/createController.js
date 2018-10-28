@@ -59,18 +59,12 @@ createApp.controller('createController', function($scope, createFactory){
         /*Passwords Match Send new account to be created*/
         createFactory.createUserAccount($scope.accInfo).then(function(response) {
           //do stuff on response
+          window.alert("Account created successfully.");
         }, function(error) {
           //do stuff on error
           window.alert("There was an error: " + error);
         });
 
-        //reset form data
-        $scope.email = "";
-        $scope.username = "";
-        $scope.pass = "";
-        $scope.repeat = "";
-        $scope.radio = "false";
-        $scope.orgUser = "";
       }
       else {
         //tell them to match passwords
@@ -86,8 +80,7 @@ createApp.factory('createFactory', function($http){
 
     //sends post request to /api/functions
     createUserAccount: function(accInfo) {
-       console.log("Here");
-	     return $http.post('https://localhost:8080/api/functions', accInfo);
+	     return $http.post('http://localhost:8080/api/functions/user', accInfo);
     }
 
   }; //end methods

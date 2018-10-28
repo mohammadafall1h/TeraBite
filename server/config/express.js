@@ -3,7 +3,8 @@ var path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    config = require('./config');
+    config = require('./config'),
+    functionRouter = require('../routes/routes.js');
 
 module.exports.init = function() {
   //connect to database specified in config.js
@@ -19,6 +20,9 @@ module.exports.init = function() {
 
   //Serve client side files like html and css
   app.use(express.static(path.resolve('./client')));
+
+  //use router for calls to /api
+  app.use('/api/functions', functionRouter);
 
   //default to homepage
   app.get('/', function(req, res){

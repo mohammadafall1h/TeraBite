@@ -2,29 +2,14 @@
 /* Dependencies */
 // TODO: I think we need separate models for events and users
 var mongoose = require('mongoose'),
-  userModel = require('../models/model.js');
+  models = require('../models/model.js');
 
-/*
-Please go over everything, the stuff I labeled as need to fix is what I know is wrong
-most other things I think i did right but still want
-a second pair of eyes to look at it yknow
-
-
-Things to fix:
-
-*/
-
-// not sure what to add for the login
-// will keep it commented for now
-// exports.login = function(req,res) {
-//
-// }
-
-// create user 
+// create user
 exports.create = function(req, res) {
 
-  var user = new userModel(req.body);
-  event.save(function(err) {
+  var user = new models.users(req.body);
+
+  user.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
@@ -34,6 +19,7 @@ exports.create = function(req, res) {
   });
 };
 
+/*
 exports.read = function(req, res) {
   res.json(req.user);
 };
@@ -59,9 +45,12 @@ exports.update = function(req, res) {
 
 };
 
+*/
+
 /* Delete a listing */
+/*
 exports.delete = function(req, res) {
- 
+
   var user = req.user;
 
   user.remove(function (err) {
@@ -73,6 +62,7 @@ exports.delete = function(req, res) {
     }
   })
 };
+*/
 
 /* I don't think we need to list users?
 I am commenting this out for now  */
@@ -95,6 +85,7 @@ I am commenting this out for now  */
         bind it to the request object as the property 'listing',
         then finally call next
  */
+ /*
 exports.listingByID = function(req, res, next, id) {
   userModel.findById(id).exec(function(err, user) {
     if(err) {
@@ -105,3 +96,4 @@ exports.listingByID = function(req, res, next, id) {
     }
   });
 };
+*/

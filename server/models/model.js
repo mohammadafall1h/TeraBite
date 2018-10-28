@@ -76,5 +76,7 @@ var users = mongoose.model('newUser', userSchema);
 var events = mongoose.model('newEvent', eventSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
-module.exports = users;
-module.exports = events;
+module.exports = {
+  users: users,
+  events: events
+}
