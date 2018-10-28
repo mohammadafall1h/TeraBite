@@ -39,16 +39,13 @@ exports.read = function(req, res) {
 };
 
 exports.update = function(req, res) {
-  var user = req.user`;
+  var user = req.user;
 
-  // NEEDS TO BE FIXED
-  // not sure what the exact html equivalents are
-  // please fix these
-  user.email = ;
-  user.username = ;
-  user.pass = ;
-  user.isEventCreator =;
-  user.org = ;
+  user.email = req.body.email;
+  user.username = req.body.username;
+  user.pass = req.body.pass;
+  user.isEventCreator = req.body.isEventCreator;
+  user.org = req.body.org;
 
 
   user.save(function(err) {
@@ -64,13 +61,12 @@ exports.update = function(req, res) {
 
 /* Delete a listing */
 exports.delete = function(req, res) {
-  // need to account for multiple
-  // events having the same name
-  // maybe cross check against owner of event and name?
-  var user = req.user.email;
+ 
+  var user = req.user;
 
   user.remove(function (err) {
     if (err) {
+      console.log(err);
       res.status(400).send(err);
     } else {
       res.end();

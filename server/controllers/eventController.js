@@ -38,13 +38,13 @@ exports.update = function(req, res) {
   // NEEDS TO BE FIXED
   // not sure what the exact html equivalents are
   // please fix these
-  event.name = ;
-  event.address = ;
-  event.coordinates = ;
-  event.owner = ;
-  event.date = ;
-  event.time = ;
-  event.food = ;
+  event.name = req.body.name;
+  event.address = req.body.address;
+  event.coordinates = req.body.coordinates;
+  event.owner = req.body.owner;
+  event.date = req.body.date;
+  event.time = req.body.time;
+  event.food = req.body.food;
 
 
   event.save(function(err) {
@@ -63,10 +63,11 @@ exports.delete = function(req, res) {
   // need to account for multiple
   // events having the same name
   // maybe cross check against owner of event and name?
-  var event = req.event.name;
+  var event = req.event;
 
   event.remove(function (err) {
     if (err) {
+      console.log(err);
       res.status(400).send(err);
     } else {
       res.end();
@@ -80,6 +81,7 @@ exports.list = function(req, res) {
   /* Your code here */
   eventModel.find().sort('name').exec(function(err, events) {
     if (err) {
+      console.log(err);
       res.status(400).send(err);
     } else {
       res.json(events);
