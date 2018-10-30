@@ -10,7 +10,6 @@ var events = require('../controllers/eventController.js'),
 router.route('/user')
   .post(users.create);
 
-
 /* for calls to /api/functions/event */
 //router.route('/event');
 

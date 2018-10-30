@@ -57,10 +57,10 @@ createApp.controller('createController', function($scope, createFactory){
         /*Passwords Match Send new account to be created*/
         createFactory.createUserAccount($scope.accInfo).then(function(response) {
           //do stuff on response
-          window.alert("Account created successfully.");
+          window.alert(response.data);
         }, function(error) {
           //do stuff on error
-          window.alert("There was an error: " + error);
+          window.alert(error.data);
         });
 
       }
