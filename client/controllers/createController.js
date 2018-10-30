@@ -5,15 +5,15 @@ var createApp = angular.module('createApplication', []);
 createApp.controller('createController', function($scope, createFactory){
 
   /* variables bound to form inputs */
-  $scope.email;
-  $scope.username;
-  $scope.pass;
-  $scope.repeat;
+  $scope.email = "";
+  $scope.username = "";
+  $scope.pass = "";
+  $scope.repeat = "";
   $scope.radio = "false"; //defaults to not an event creator
 
   //variables to control organization name
-  $scope.org; //bound to text input, typing into text box changes orgUser
-  $scope.orgUser; //holds the saved the orgization name
+  $scope.org = ""; //bound to text input, typing into text box changes orgUser
+  $scope.orgUser = ""; //holds the saved the orgization name
 
   //updates orgUser whenever input box data changes
   $scope.$watch('org', function(value) {
@@ -52,9 +52,45 @@ createApp.controller('createController', function($scope, createFactory){
         $scope.accInfo.org = $scope.orgUser;
       }
 
-      //only send info if passwords match
-      if($scope.pass === $scope.repeat){
-        /*Passwords Match Send new account to be created*/
+      //check input box data for correct minimum requirements
+      //check for @ufl.edu email address
+      if($scope.email.indexOf('@ufl.edu') === -1){
+        window.alert('You must provide a valid University of Florida email for this service.');
+      }
+      //check if username is entered
+      else if($scope.username.length === 0){
+        window.alert('You must provide a Username.');
+      }
+      //check if password is entered
+      else if($scope.pass.length < 8){
+        window.alert('Your password must be at least 8 characters long.');
+      }
+      //check if Org is entered if they are an event creator
+      else if($scope.accInfo.isEventCreator && $scope.orgUser.length === 0){
+        window.alert('You must provide an organization name.');
+      }
+      //check if the passwords match
+      else if($scope.pass !== $scope.repeat){
+        window.alert("Passwords do not match.");
+      }
+      //check if there is a form element that is too long (>128) (arbitrary max size)
+      else if($scope.email.length > 128 || $scope.username.length > 128 || $scope.pass.length > 128 ||
+      $scope.accInfo.org.length > 128){
+        let errorString = 'One or more input fields exceeds the maximum length of 128 characters:';
+
+        if($scope.email.length > 128)
+          errorString += '\nEmail';
+        if($scope.username.length > 128)
+          errorString += '\nUsername';
+        if($scope.pass.length > 128)
+          errorString += '\nPassword';
+        if($scope.accInfo.org.length > 128)
+          errorString += '\nOrginization Name';
+
+        window.alert(errorString);
+      }
+      //Every form element has been checked and is okay, send form to create account
+      else {
         createFactory.createUserAccount($scope.accInfo).then(function(response) {
           //do stuff on response
           if(window.confirm(response.data)){
@@ -65,11 +101,6 @@ createApp.controller('createController', function($scope, createFactory){
           //do stuff on error
           window.alert(error.data);
         });
-
-      }
-      else {
-        //tell them to match passwords
-        window.alert("Passwords do not match.");
       }
   }; //end createUserAccount
 
