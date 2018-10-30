@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
 // create new user account
 /* TODO:
 Have a password encryption function that is called before user account is saved to db
-Redirect to sign-in after account successfully created
 */
 exports.create = function(req, res) {
 
@@ -32,7 +31,7 @@ exports.create = function(req, res) {
       }
 
     } else {
-      res.send('Account created successfully. Moving to sign-in page.');
+      res.send('Account created successfully. Select \'Ok\' to move to the sign-in page.');
     }
   });
 };

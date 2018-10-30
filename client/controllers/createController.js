@@ -57,7 +57,10 @@ createApp.controller('createController', function($scope, createFactory){
         /*Passwords Match Send new account to be created*/
         createFactory.createUserAccount($scope.accInfo).then(function(response) {
           //do stuff on response
-          window.alert(response.data);
+          if(window.confirm(response.data)){
+            //re-route to sign-in
+            window.location = '/signin';
+          }
         }, function(error) {
           //do stuff on error
           window.alert(error.data);
