@@ -2,22 +2,24 @@
 /* Dependencies */
 var mongoose = require('mongoose'),
   models = require('../models/model.js');
+const bcrypt = require('bcrypt');
 
 // create new user account
-/* TODO:
-Have a password encryption function that is called before user account is saved to db
-*/
 exports.create = function(req, res) {
 
   var user = new models.users(req.body);
+
+  //encrypt password
+  let hash = bcrypt.hashSync(user.pass, 10);
+  user.pass = hash;
 
   user.save(function(err) {
     if(err) {
 
       console.log("There was an error:\n" + err);
 
+      //Duplication error code
       if(err.code === 11000){
-        //find out which field is duplicated
         //check for substring in error to see which field was duplicated
         var errStr = JSON.stringify(err);
         if(errStr.indexOf('email') != -1)
