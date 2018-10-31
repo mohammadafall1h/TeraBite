@@ -33,21 +33,21 @@
     <!--__________NavigationEnd__________-->
   </div>
 
-<div class="login-box">
+<div class="login-box" ng-app="loginApplication">
   <!--__________Source for Avatar Image__________-->
     <img src="../images/avatar.png" class="avatar">
     <!--__________Login Here Text__________-->
         <h1>Login Here</h1>
             <!--__________Form Begin__________-->
-            <form>
+            <form ng-controller="loginController">
             <!--__________Username Text__________-->
             <p>Username</p>
-            <input type="text" name="username" placeholder="Enter Username">
+            <input type="text" name="username" placeholder="Enter Username" ng-model="username">
             <!--__________Password Text__________-->
             <p>Password</p>
-            <input type="password" name="password" placeholder="Enter Password">
+            <input type="password" name="password" placeholder="Enter Password" ng-model="pass">
             <!--__________Submit Input (Button)__________-->
-            <input type="submit" name="submit" value="Login">
+            <input type="submit" name="submit" value="Login" ng-click="loginAccount()">
             <!--__________Forget Password Link__________-->
             <a href="#" class="hyperlink">Forget Password</a>
             <a href="/signup" class="hyperlink">New User? Sign Up!</a>
