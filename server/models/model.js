@@ -1,5 +1,7 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'),
+    crypto = require('crypto'),
+    jwt = require('jsonwebtoken'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
@@ -14,10 +16,10 @@ var userSchema = new Schema({
     required: true,
     unique: true
   },
-  pass: {
-    type: String,
-    required: true
-  },
+  // pass: {
+  //   type: String,
+  //   required: true
+  // },
   isEventCreator: {
     type: Boolean,
     required: true
@@ -25,9 +27,48 @@ var userSchema = new Schema({
   org: {
     type: String,
     required: false
-  }
+  },
+  //adding salt and hash
+  salt: String,
+  hash: String
 });
 
+//password encryption for passport
+// do i need this.pass or just pass in order to use what the user put in
+userSchema.methods.setPassword = function(pass){
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash = crypto.pbkdf2Sync(pass, this.salt, 10000, 512, 'sha512').toString('hex');
+};
+
+userSchema.methods.validatePassword = function(pass) {
+  const hash = crypto.pbkdf2Sync(pass, this.salt, 10000, 512, 'sha512').toString('hex');
+  return this.hash === hash;
+};
+
+
+userSchema.methods.generateJWT = function() {
+  const today = new Date();
+  const expirationDate = new Date(today);
+  expirationDate.setDate(today.getDate() + 60);
+
+  return jwt.sign({
+    email: this.email,
+    id: this._id,
+    exp: parseInt(expirationDate.getTime() / 1000, 10),
+  }, 'secret');
+}
+
+userSchema.methods.toAuthJSON = function() {
+  return {
+    _id: this._id,
+    email: this.email,
+    token: this.generateJWT(),
+  };
+};
+
+
+
+//event schema
 var eventSchema = new Schema({
   name: {
     type: String,
