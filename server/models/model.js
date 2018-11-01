@@ -1,6 +1,6 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'),
-    crypto = require('crypto'),
+    bcrypt = require('bcrypt'),
     jwt = require('jsonwebtoken'),
     Schema = mongoose.Schema;
 
@@ -16,10 +16,6 @@ var userSchema = new Schema({
     required: true,
     unique: true
   },
-  // pass: {
-  //   type: String,
-  //   required: true
-  // },
   isEventCreator: {
     type: Boolean,
     required: true
@@ -28,21 +24,15 @@ var userSchema = new Schema({
     type: String,
     required: false
   },
-  //adding salt and hash
-  salt: String,
-  hash: String
+  //hashed pw
+  hash: {
+    type: String,
+    required: true
+  }
 });
 
-//password encryption for passport
-// do i need this.pass or just pass in order to use what the user put in
-userSchema.methods.setPassword = function(pass){
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(pass, this.salt, 10000, 512, 'sha512').toString('hex');
-};
-
 userSchema.methods.validatePassword = function(pass) {
-  const hash = crypto.pbkdf2Sync(pass, this.salt, 10000, 512, 'sha512').toString('hex');
-  return this.hash === hash;
+  return bcrypt.compareSync(pass, this.hash);
 };
 
 

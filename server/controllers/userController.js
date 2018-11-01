@@ -2,18 +2,32 @@
 /* Dependencies */
 var mongoose = require('mongoose'),
   models = require('../models/model.js');
+
 const bcrypt = require('bcrypt');
 
 // create new user account
 exports.create = function(req, res) {
 
-  var user = new models.users(req.body);
+  var user = {
+    email: "",
+    username: "",
+    isEventCreator: false,
+    org: "",
+    hash: ""
+  }
+
+  //fill userModel object to be saved with passed information
+  user.email = req.body.email;
+  user.username = req.body.username;
+  user.isEventCreator = req.body.isEventCreator;
+  user.org = req.body.org;
 
   //encrypt password
-  let hash = bcrypt.hashSync(user.pass, 10);
-  user.pass = hash;
+  user.hash = bcrypt.hashSync(req.body.pass, 10);
 
-  user.save(function(err) {
+  var userDone = new models.users(user);
+
+  userDone.save(function(err) {
     if(err) {
 
       console.log("There was an error:\n" + err);
