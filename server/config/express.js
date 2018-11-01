@@ -37,6 +37,10 @@ module.exports.init = function() {
     res.sendFile(path.join(__dirname + '../../../client/htmls/Create.html'));
   });
 
+  app.get('/account', function(req, res){
+    res.sendFile(path.join(__dirname + '../../../client/htmls/Create_Event.html'));
+  });
+
   // redirect anything that isnt an pathname specified above
   app.get('*', function(req, res){
       res.redirect('/');

@@ -66,11 +66,11 @@ var eventSchema = new Schema({
   },
   address: {
     type: String,
-    recquired: true
+    required: true
   },
-  coordinates: {
-    latitude: Number,
-    longiude: Number
+  room: {
+    type: String,
+    required: true
   },
   owner: {
     type: String,
@@ -87,20 +87,13 @@ var eventSchema = new Schema({
   food: {
   	type: String,
   	required: true
+  },
+  description: {
+    type: String,
+    required: true
   }
 });
 eventSchema.index({ address: 1, date: 1 ,time: 1}, { unique: true });
-
-/* create a 'pre' function that adds the updated_at (and created_at if not already there) property
-listingSchema.pre('save', function(next) {
-  var currentTime = new Date;
-  this.updated_at = currentTime;
-  if(!this.created_at)
-  {
-    this.created_at = currentTime;
-  }
-  next();
-}); */
 
 /* Use your schema to instantiate a Mongoose model */
 var users = mongoose.model('newUser', userSchema);
