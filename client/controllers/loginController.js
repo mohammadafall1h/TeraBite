@@ -38,9 +38,13 @@ loginApp.controller('loginController', function($scope, loginFactory){
       else {
         loginFactory.loginAccount($scope.login).then(function(response) {
           //will be redirected to home on success
+          if(window.confirm("Login successful, press \'OK\' to go to the homepage.")){
+            //re-route to sign-in
+            window.location = '/';
+          }
         }, function(err) {
-          //do error flash on failure and tell them what was wrong
-          window.alert(err);
+          //tell them what was wrong on failure
+          window.alert(err.data);
         });
       }
   }; //end loginAccount
