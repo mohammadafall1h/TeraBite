@@ -1,9 +1,8 @@
-
 /* Dependencies */
 var mongoose = require('mongoose'),
   models = require('../models/model.js');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // create new user account
 exports.create = function(req, res) {
@@ -23,7 +22,8 @@ exports.create = function(req, res) {
   user.org = req.body.org;
 
   //encrypt password
-  user.hash = bcrypt.hashSync(req.body.pass, 10);
+  var salt = bcrypt.genSaltSync(10);
+  user.hash = bcrypt.hashSync(req.body.pass, salt);
 
   var userDone = new models.users(user);
 

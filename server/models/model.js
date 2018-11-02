@@ -1,7 +1,7 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
-    jwt = require('jsonwebtoken'),
+    bcrypt = require('bcryptjs'),
+    //jwt = require('jsonwebtoken'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
@@ -31,11 +31,11 @@ var userSchema = new Schema({
   }
 });
 
-userSchema.methods.validatePassword = function(pass) {
+userSchema.methods.validatePassword = function validatePassword(pass) {
   return bcrypt.compareSync(pass, this.hash);
 };
 
-
+/*
 userSchema.methods.generateJWT = function() {
   const today = new Date();
   const expirationDate = new Date(today);
@@ -48,6 +48,7 @@ userSchema.methods.generateJWT = function() {
   }, 'secret');
 }
 
+
 userSchema.methods.toAuthJSON = function() {
   return {
     _id: this._id,
@@ -55,6 +56,7 @@ userSchema.methods.toAuthJSON = function() {
     token: this.generateJWT(),
   };
 };
+*/
 
 
 

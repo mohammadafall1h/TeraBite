@@ -3,6 +3,9 @@ var path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
+    session = require("express-session"),
+    passport = require('passport')
+    passConfig = require('./passport.js'),
     config = require('./config'),
     functionRouter = require('../routes/routes.js');
 
@@ -13,13 +16,14 @@ module.exports.init = function() {
   //initialize app
   var app = express();
 
-  //enable request logging for development debugging
-  app.use(morgan('dev'));
-  //body parsing middleware
-  app.use(bodyParser.json());
-
-  //Serve client side files like html and css
+  //activate middleware
   app.use(express.static(path.resolve('./client')));
+  app.use(session({ secret: "terabite" }));
+  app.use(morgan('dev'));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   //use router for calls to /api
   app.use('/api/functions', functionRouter);

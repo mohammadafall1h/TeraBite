@@ -1,19 +1,31 @@
 {
-  "name": "Free_Food",
+  "name": "terabite",
   "version": "1.0.0",
   "description": "Dank Food",
   "main": "server.js",
-  "author": "Terabite Dev Team",
-  "license": "MIT",
-  "dependencies": {
-    "bcrypt": "^3.0.2",
-    "express": "^4.16.4",
-    "mongoose": "^5.3.4",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.18.4"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": "8.11.4"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammadafall1h/TeraBite.git"
+  },
+  "author": "Terabite dev team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mohammadafall1h/TeraBite/issues"
+  },
+  "homepage": "https://github.com/mohammadafall1h/TeraBite#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.3.8",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   }
 }
