@@ -38,7 +38,15 @@ loginApp.controller('loginController', function($scope, loginFactory){
       else {
         loginFactory.loginAccount($scope.login).then(function(response) {
           //will be redirected to home on success
-          if(window.confirm("Login successful, press \'OK\' to go to the homepage.")){
+          // if(response.data===(__dirname + '../htmls/Login.html')){
+          if(response.data==='incorrect_login'){
+              window.alert("You've entered a wrong password or username.");
+          }
+          // // }
+          // if(response.data){
+          //   window.alert('Incorrect username and password.\nPlease try again.');
+          // }
+          else if(window.confirm("Login successful, press \'OK\' to go to the homepage.")){
             //re-route to sign-in
             window.location = '/';
           }

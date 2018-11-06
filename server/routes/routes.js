@@ -8,7 +8,7 @@ var events = require('../controllers/eventController.js'),
 /* for calls to /api/functions/login */
 router.route('/login')
   .post(passport.authenticate('local', { successRedirect: '/',
-                                         failureRedirect: '/signin'})
+                                         failureRedirect: '/badLogin',})
   )
   .get(login.getUser);
 
@@ -16,7 +16,9 @@ router.route('/login')
 router.route('/user')
   .post(users.create);
 
-/* for calls to /api/functions/event */
+/*for calls to /api/functions/event
+  similar to bootcamp assignment 4
+  need to be able to post and get events */
 //router.route('/event');
 
 module.exports = router;

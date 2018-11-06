@@ -36,6 +36,11 @@ module.exports.init = function() {
   app.get('/signin', function(req, res){
     res.sendFile(path.join(__dirname + '../../../client/htmls/Login.html'));
   });
+  
+  // this is got when failureRedirect happens in passport authentication
+  app.get('/badLogin',function(req,res){
+    res.send("incorrect_login");
+  })
 
   app.get('/signup', function(req, res){
     res.sendFile(path.join(__dirname + '../../../client/htmls/Create.html'));
