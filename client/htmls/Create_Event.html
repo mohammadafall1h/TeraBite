@@ -1,9 +1,10 @@
+<html>
+<head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/create_event_style.css">
-
         <title>UF Food Create Event</title>
-
-
+</head>
+<body ng-app="createEventApplication">
 <div class="PageContainer">
 
     <!--__________HomeBegin__________-->
@@ -15,7 +16,7 @@
 
     <!--__________SearchBegin__________-->
         <a href="#" class="btn btn-primary btn-small">
-          <span class="glyphicon glyphicon-search"></span> Search 
+          <span class="glyphicon glyphicon-search"></span> Search
         </a>
     <!--__________SearchEnd__________-->
 
@@ -33,18 +34,15 @@
 
             <!--__________Form Begin__________-->
             <form>
-            	<!--__________Event Organizer Text__________-->
-            <p>* Event Organizer</p>
-            <input type="text" name="eventOrg" placeholder="Event organizer">
-            <!--__________Event Name Text__________-->
+              <!--__________Event Name Text__________-->
             <p>* Event Name</p>
-            <input type="text" name="eventName" placeholder="Event name">
+            <input type="text" name="eventName" placeholder="Event name" ng-model="name">
             <!--__________Event Address__________-->
             <p>* Event Address</p>
-            <input type="text" name="address" placeholder="Enter address">
+            <input type="text" name="address" placeholder="Enter address" ng-model="address">
             <!--__________Building Name__________-->
             <p>* Room Number</p>
-            <input type="text" name="room" placeholder="Enter room number">
+            <input type="text" name="room" placeholder="Enter room number" ng-model="room">
             </form>
             <!--__________Form End__________-->
 
@@ -59,25 +57,30 @@
             	<!--__________Event Date Input__________-->
             <form action="/action_page.php">
   			<p>* Event Date</p>
-  			<input type="date" name="bday">
+  			<input type="date" name="bday" ng-model="date">
             <!--__________Username Text__________-->
             <form action="/action_page.php">
   			<p>* Event Time</p>
-  			<input type="time" name="usr_time">
+  			<input type="time" name="usr_time" ng-model="time">
 			<!--__________Food Text__________-->
             <p>Event Food</p>
-            <textarea name="food" placeholder="Enter food hosted at event." cols="33" rows="3"></textarea>
+            <textarea name="food" placeholder="Enter food hosted at event." cols="33" rows="3" ng-model="food"></textarea>
             <!--__________Additional Text__________-->
             <p>Additional Information</p>
-            <textarea name="info" placeholder="Enter additional information." cols="33" rows="3"></textarea>
+            <textarea name="info" placeholder="Enter additional information." cols="33" rows="3" ng-model="description"></textarea>
             </form>
             <!--__________Form End__________-->
   </div>
 
         <<div class="SunmitButton">
             <!--__________Submit Input (Button)__________-->
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="Submit"  ng-click="createEventType()">
 
 </div>
-
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="../controllers/createEventController.js"></script>
+</body>
+</html>
