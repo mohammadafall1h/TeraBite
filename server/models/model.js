@@ -1,7 +1,6 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'),
     bcrypt = require('bcryptjs'),
-    //jwt = require('jsonwebtoken'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
@@ -35,31 +34,6 @@ userSchema.methods.validatePassword = function validatePassword(pass) {
   return bcrypt.compareSync(pass, this.hash);
 };
 
-/*
-userSchema.methods.generateJWT = function() {
-  const today = new Date();
-  const expirationDate = new Date(today);
-  expirationDate.setDate(today.getDate() + 60);
-
-  return jwt.sign({
-    email: this.email,
-    id: this._id,
-    exp: parseInt(expirationDate.getTime() / 1000, 10),
-  }, 'secret');
-}
-
-
-userSchema.methods.toAuthJSON = function() {
-  return {
-    _id: this._id,
-    email: this.email,
-    token: this.generateJWT(),
-  };
-};
-*/
-
-
-
 //event schema
 var eventSchema = new Schema({
   name: {
@@ -79,11 +53,11 @@ var eventSchema = new Schema({
     required: true
   },
   date: {
-  	type: Date,
+  	type: String,
   	required: true
   },
   time: {
-  	type: Number,
+  	type: String,
   	required: true
   },
   food: {
