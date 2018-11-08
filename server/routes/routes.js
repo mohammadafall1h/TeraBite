@@ -16,9 +16,7 @@ router.route('/login')
 router.route('/user')
   .post(users.create);
 
-/*for calls to /api/functions/event
-  similar to bootcamp assignment 4
-  need to be able to post and get events */
-//router.route('/event');
+/* for calls to /api/functions/event */
+router.route('/event').post(events.create);
 
 module.exports = router;
