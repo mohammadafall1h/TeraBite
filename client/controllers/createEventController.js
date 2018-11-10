@@ -69,13 +69,13 @@ createApp.controller('createEventController', function($scope, createEventFactor
       $scope.food.length > 300 || $scope.description.length > 300){
         let errorString = 'One or more input fields exceeds the maximum length of 300 characters:';
 
-        if($scope.name.length > 236)
+        if($scope.name.length > 300)
           errorString += '\nEvent name';
-        if($scope.address.length > 236)
+        if($scope.address.length > 300)
           errorString += '\nAddress';
-        if($scope.room.length > 236)
+        if($scope.room.length > 300)
           errorString += '\nEvent Room';
-        if($scope.food.length > 236)
+        if($scope.food.length > 300)
           errorString += '\nEvent Food';
         if($scope.description.length > 300)
           errorString += '\nAdditional information';
@@ -85,6 +85,46 @@ createApp.controller('createEventController', function($scope, createEventFactor
       }
       //Every form element has been checked and is okay, send form to create account
       else {
+
+        //parse out the date into MM/DD/YYYY format
+        var string = $scope.evntinfo.date + '';
+        var date = string.split(" ");
+        $scope.evntinfo.date = "";
+
+        //parse out the month
+        if(date[1] === "Jan")
+          $scope.evntinfo.date += "01/"
+        else if(date[1] === "Feb")
+          $scope.evntinfo.date += "02/"
+        else if(date[1] === "Mar")
+          $scope.evntinfo.date += "03/"
+        else if(date[1] === "Apr")
+          $scope.evntinfo.date += "04/"
+        else if(date[1] === "May")
+          $scope.evntinfo.date += "05/"
+        else if(date[1] === "Jun")
+          $scope.evntinfo.date += "06/"
+        else if(date[1] === "Jul")
+          $scope.evntinfo.date += "07/"
+        else if(date[1] === "Aug")
+          $scope.evntinfo.date += "08/"
+        else if(date[1] === "Sep")
+          $scope.evntinfo.date += "09/"
+        else if(date[1] === "Oct")
+          $scope.evntinfo.date += "10/"
+        else if(date[1] === "Nov")
+          $scope.evntinfo.date += "11/"
+        else
+          $scope.evntinfo.date += "12/"
+
+        //include the day and year as well
+        $scope.evntinfo.date += date[2] + "/" + date[3];
+
+        //parse out the time
+        string = $scope.evntinfo.time + '';
+        var time = string.split(" ");
+        $scope.evntinfo.time = time[4].substring(0,5);
+
         createEventFactory.createEvent($scope.evntinfo).then(function(response) {
 
           window.alert('Event Created');

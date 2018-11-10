@@ -8,8 +8,8 @@
 <div class="PageContainer">
 
     <!--__________HomeBegin__________-->
-        <<div align="left" class="container">
-        <a href="#" class="btn btn-primary btn-small" >
+        <div align="left" class="container">
+        <a href="/" class="btn btn-primary btn-small" >
           <span class="glyphicon glyphicon-home"></span> Home
         </a>
     <!--__________HomeEnd__________-->
@@ -35,13 +35,13 @@
             <!--__________Form Begin__________-->
             <form>
               <!--__________Event Name Text__________-->
-            <p>* Event Name</p>
+            <p>Event Name</p>
             <input type="text" name="eventName" placeholder="Event name" ng-model="name">
-            <!--__________Event Address__________-->
-            <p>* Event Address</p>
+            <!--_________Event Address__________-->
+            <p>Event Address</p>
             <input type="text" name="address" placeholder="Enter address" ng-model="address">
             <!--__________Building Name__________-->
-            <p>* Room Number</p>
+            <p>Room Number</p>
             <input type="text" name="room" placeholder="Enter room number" ng-model="room">
             </form>
             <!--__________Form End__________-->
@@ -53,26 +53,24 @@
     <!--__________<img src="avatar.png" class="avatar">__________-->
 
             <!--__________Form Begin__________-->
-            <form>
             	<!--__________Event Date Input__________-->
             <form action="/action_page.php">
-  			<p>* Event Date</p>
+  			<p>Event Date</p>
   			<input type="date" name="bday" ng-model="date">
             <!--__________Username Text__________-->
-            <form action="/action_page.php">
-  			<p>* Event Time</p>
+  			<p>Event Time</p>
   			<input type="time" name="usr_time" ng-model="time">
 			<!--__________Food Text__________-->
             <p>Event Food</p>
             <textarea name="food" placeholder="Enter food hosted at event." cols="33" rows="3" ng-model="food"></textarea>
             <!--__________Additional Text__________-->
-            <p>Additional Information</p>
+            <p>Event Description</p>
             <textarea name="info" placeholder="Enter additional information." cols="33" rows="3" ng-model="description"></textarea>
             </form>
             <!--__________Form End__________-->
   </div>
 
-        <<div class="SunmitButton">
+        <div class="SunmitButton">
             <!--__________Submit Input (Button)__________-->
             <input type="submit" name="submit" value="Submit"  ng-click="createEventType()">
 
