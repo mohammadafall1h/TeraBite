@@ -91,6 +91,6 @@ var favorites = mongoose.model('newFavorite', favSchema);
 /* Export the model to make it avaiable to other parts of your Node application */
 module.exports = {
   users: users,
-  events: events
+  events: events,
   favorites: favorites
 }
