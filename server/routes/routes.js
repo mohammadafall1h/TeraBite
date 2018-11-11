@@ -17,6 +17,8 @@ router.route('/user')
   .post(users.create);
 
 /* for calls to /api/functions/event */
-router.route('/event').post(events.create);
+router.route('/event')
+.get(events.list)
+.post(events.create);
 
 module.exports = router;
