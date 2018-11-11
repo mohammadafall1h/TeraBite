@@ -21,7 +21,7 @@ exports.create = function(req, res) {
 exports.list = function(req, res) {
   models.events.find().exec(function(err, events) {
     if (err){
-      res.status(404).send(err);
+      res.status(400).send(err);
     } else {
       res.json(events);
     }
