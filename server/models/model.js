@@ -69,14 +69,28 @@ var eventSchema = new Schema({
     required: true
   }
 });
+
+var favSchema = new Schema({
+  userID: {
+    type: String,
+    required: true,
+  },
+  eventID: {
+    type: String,
+    required: true,
+  }
+});
 eventSchema.index({ address: 1, date: 1 ,time: 1}, { unique: true });
+favSchema.index({ userID 1, eventID 1}, { unique: true });
 
 /* Use your schema to instantiate a Mongoose model */
 var users = mongoose.model('newUser', userSchema);
 var events = mongoose.model('newEvent', eventSchema);
+var favorites = mongoose.model('newFavorite', favSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
 module.exports = {
   users: users,
   events: events
+  favorites: favorites
 }
