@@ -16,3 +16,14 @@ exports.create = function(req, res) {
     }
   });
 };
+
+//list all events
+exports.list = function(req, res) {
+  models.events.find().exec(function(err, events) {
+    if (err){
+      res.status(404).send(err);
+    } else {
+      res.json(events);
+    }
+  });
+};
