@@ -28,6 +28,18 @@ exports.list = function(req, res) {
   });
 };
 
+exports.listByOrganizer = function(req, res){
+  var eventOrg = req.user.org;  //get org name from logged in user
+  console.log("looking for events owned by " + eventOrg);
+  models.events.find({ owner: eventOrg }).exec(function(err, events) {
+    if (err){
+      res.status(400).send(err);
+    } else {
+      res.json(events);
+    }
+  });
+}
+
 // delete an event
 exports.delete = function(req, res) {
 

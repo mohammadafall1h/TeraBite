@@ -4,20 +4,28 @@ var createApp = angular.module('createEventApplication', []);
 /* creates the controller for create.html (ng-controller) */
 createApp.controller('createEventController', function($scope, createEventFactory){
 
-  $scope.owner = "";
+  //who is the user
+  $scope.owner;
   createEventFactory.getUser().then(function(response) {
-
     //do stuff on response
-    if(response.data === "No User"){
-      $scope.owner = response.data;
-    }
-    else {
-      $scope.owner = response.data.org;
-    }
+    $scope.owner = response.data;
   }, function(error) {
     //do stuff on error
-    console.log('could not get user');
+    console.log('Could not get user');
   });
+
+
+  //get the events made by this user
+  $scope.events;
+  $scope.getEvents = function(){
+    createEventFactory.getEvents().then(function(response) {
+      $scope.events = response.data;
+    }, function(error) {
+      console.log('Could not retreive user\'s events');
+    });
+  }
+  $scope.getEvents();
+
   /* variables bound to form inputs */
   $scope.name= "";
   $scope.address = "";
@@ -33,7 +41,7 @@ createApp.controller('createEventController', function($scope, createEventFactor
         name: $scope.name,
         address: $scope.address,
         room: $scope.room,
-        owner: $scope.owner,
+        owner: $scope.owner.org,
         date: $scope.date,
         time: $scope.time,
         food: $scope.food,
@@ -126,9 +134,8 @@ createApp.controller('createEventController', function($scope, createEventFactor
         $scope.evntinfo.time = time[4].substring(0,5);
 
         createEventFactory.createEvent($scope.evntinfo).then(function(response) {
-
-          window.alert('Event Created');
-
+          //on response get the new events list
+          $scope.getEvents();
         }, function(error) {
           //do stuff on error
           window.alert(error.data);
@@ -148,6 +155,9 @@ createApp.factory('createEventFactory', function($http){
     },
     getUser: function() {
 	     return $http.get('http://localhost:8080/api/functions/login');
+    },
+    getEvents: function() {
+      return $http.get('http://localhost:8080/api/functions/event/org');
     }
   }; //end methods
 
