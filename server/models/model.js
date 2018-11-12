@@ -80,8 +80,8 @@ var favSchema = new Schema({
     required: true,
   }
 });
-eventSchema.index({ address: 1, date: 1 ,time: 1}, { unique: true });
-favSchema.index({ userID 1, eventID 1}, { unique: true });
+eventSchema.index({ address: 1, date: 1 ,time: 1, room: 1}, { unique: true });
+favSchema.index({ userID: 1, eventID: 1}, { unique: true });
 
 /* Use your schema to instantiate a Mongoose model */
 var users = mongoose.model('newUser', userSchema);

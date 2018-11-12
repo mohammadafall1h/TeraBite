@@ -19,7 +19,7 @@ exports.create = function(req, res) {
 
 //list all events
 exports.list = function(req, res) {
-  models.events.find().exec(function(err, events) {
+  models.events.find({ }).exec(function(err, events) {
     if (err){
       res.status(400).send(err);
     } else {

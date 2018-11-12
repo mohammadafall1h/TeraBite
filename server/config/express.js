@@ -36,7 +36,7 @@ module.exports.init = function() {
   app.get('/signin', function(req, res){
     res.sendFile(path.join(__dirname + '../../../client/htmls/Login.html'));
   });
-  
+
   // this is got when failureRedirect happens in passport authentication
   app.get('/badLogin',function(req,res){
     res.send("incorrect_login");
@@ -46,7 +46,7 @@ module.exports.init = function() {
     res.sendFile(path.join(__dirname + '../../../client/htmls/Create.html'));
   });
 
-  app.get('/account', function(req, res){
+  app.get('/account', verifyLogin, function(req, res){
     res.sendFile(path.join(__dirname + '../../../client/htmls/Create_Event.html'));
   });
 
@@ -57,3 +57,18 @@ module.exports.init = function() {
 
   return app;
 };
+
+/* MIDDLEWARE FUNCTIONS */
+
+//middleware used to block access to a route unless the user is logged in
+var verifyLogin = function(req, res, next){
+  //user exists in the request header (persistent login detected)
+  if(req.user){
+    next();
+  }
+  //user is not logged in
+  else{
+    console.log('Blocked attempt to access a webpage or api.');
+    res.send(401, "Not Logged In");
+  }
+}
