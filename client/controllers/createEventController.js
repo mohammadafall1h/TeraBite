@@ -9,11 +9,19 @@ createApp.controller('createEventController', function($scope, createEventFactor
   createEventFactory.getUser().then(function(response) {
     //do stuff on response
     $scope.owner = response.data;
+
+    //check who the user is and show the event creator stuff if they are an event creator
+    if($scope.owner.isEventCreator){
+      $("#orgEvents").show();
+      //get a list of their events
+      $scope.getEvents();
+    }
+
+
   }, function(error) {
     //do stuff on error
     console.log('Could not get user');
   });
-
 
   //get the events made by this user
   $scope.events;
@@ -24,7 +32,11 @@ createApp.controller('createEventController', function($scope, createEventFactor
       console.log('Could not retreive user\'s events');
     });
   }
-  $scope.getEvents();
+
+  //be able to open the create event form
+  $scope.toggleTable = function(){
+    $("#eventForm").toggle();
+  }
 
   /* variables bound to form inputs */
   $scope.name= "";
