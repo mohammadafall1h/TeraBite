@@ -22,8 +22,8 @@ h1 {
     height: 450px;
     background: rgba(0, 0, 0, 0.75);
     color: #fff;
-    top: 50%;
-    left: 33%;
+    top: 67%;
+    left: 12%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
@@ -35,8 +35,8 @@ h1 {
     height: 450px;
     background: rgba(0, 0, 0, 0.75);
     color: #fff;
-    top: 50%;
-    left: 66%;
+    top: 67%;
+    left: 40%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
@@ -214,7 +214,7 @@ table[name="eventTable"]{
 	
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 50%;
+    top: 100%;
     left: 50%;
     position: static;
     padding: 70px 30px;
