@@ -5,6 +5,7 @@ var homeApp = angular.module('homeApplication', []);
 homeApp.controller('homeController', function($scope, homeFactory){
   //check the user then bind it to the username display
   $scope.username = "";
+  $scope.events;
 
   homeFactory.getUser().then(function(response) {
     //do stuff on response
@@ -19,6 +20,15 @@ homeApp.controller('homeController', function($scope, homeFactory){
     console.log('could not get user');
   });
 
+
+  homeFactory.getEvents().then(function(response) {
+    //do stuff on response
+    $scope.events = response.data;
+  }, function(error) {
+    //do stuff on error
+    console.log('could not get user');
+  });
+
 }); //end homeController
 
 /* creates the factory that will be used to handle http requests */
@@ -28,8 +38,10 @@ homeApp.factory('homeFactory', function($http){
     //sends get request to check if there is currently a user logged in
     getUser: function() {
 	     return $http.get('http://localhost:8080/api/functions/login');
+    },
+    getEvents: function() {
+      return $http.get('http://localhost:8080/api/functions/event');
     }
-
   }; //end methods
 
   return methods;
