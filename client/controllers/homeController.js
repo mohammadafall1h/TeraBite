@@ -6,6 +6,7 @@ homeApp.controller('homeController', function($scope, homeFactory){
   //check the user then bind it to the username display
   $scope.username = "";
   $scope.events;
+  $scope.detailedInfo;
 
   homeFactory.getUser().then(function(response) {
     //do stuff on response
@@ -26,7 +27,16 @@ homeApp.controller('homeController', function($scope, homeFactory){
     $scope.events = response.data;
   }, function(error) {
     //do stuff on error
-    console.log('could not get user');
+    console.log('No events to display.');
+  });
+
+
+  homeFactory.getDetails().then(function() {
+    //do stuff on response
+      $scope.detailedInfo = response.data;
+  }, function(error) {
+    //do stuff on error
+    console.log('No details to display.');
   });
 
 }); //end homeController
@@ -40,6 +50,9 @@ homeApp.factory('homeFactory', function($http){
 	     return $http.get('http://localhost:8080/api/functions/login');
     },
     getEvents: function() {
+      return $http.get('http://localhost:8080/api/functions/event');
+    },
+    getDetails: function() {
       return $http.get('http://localhost:8080/api/functions/event');
     }
   }; //end methods

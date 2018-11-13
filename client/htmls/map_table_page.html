@@ -55,11 +55,11 @@
                   <th>Favorites</th>
                 </tr>
                   <!--__________Not Functional__________-->
-                  <tr ng-repeat="event in events">
+                  <tr ng-repeat="event in events" ng-click="getDetails()">
                   <td>{{event.owner}}</td>
                   <td>{{event.name}}</td>
                   <td>{{event.date}}</td>
-                  <td type = "buttun" class="btn btn-success btn-xs" class="glyphicon glyphicon-star-empty"></td>
+                  <td type = "buttun" class="glyphicon glyphicon-star-empty"></td>
                 </tr>
               </table>
             </div>
@@ -70,7 +70,7 @@
               <div class="jumbotron">
                 <h3>Detailed Information</h3>
                 <!--__________Not Functional__________-->
-                <h4><strong>Organization:</strong> {{detailedInfo.organization}}</h4>
+                <h4><strong>Organization:</strong> {{detailedInfo.owner}}</h4>
                 <h4><strong>Event:</strong> {{detailedInfo.name}}</h4>
                 <h4><strong>Date:</strong> {{detailedInfo.date}}</h4>
                 <h4><strong>Time:</strong> {{detailedInfo.time}}</h4>
