@@ -1,3 +1,4 @@
+<!DOCTYPE html> 
 <html ng-app="createEventApplication">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -14,11 +15,12 @@
     <a href="#" class="btn btn-primary btn-small">
       <span class="glyphicon glyphicon-search"></span> Search
     </a>
-
+	</div>
 
     <!-- Owned Events Table -->
-    <strong><h1 color="white">{{owner.org}} Events</h1></strong>
-    <table class="table table-striped table-hover">
+    <h1 color="white" class="ng-binding text-capitalize" data_temp_dwid="0"><h1 color="white">{{owner.org}} Events</h1></h1>
+    <table class="table table-striped table-hover" name="eventTable">
+		<caption>All Events</caption>
       <thead>
         <tr>
           <th scope="col">Name</th>
@@ -38,7 +40,9 @@
         </tr>
       </tbody>
     </table>
-
+	<div class="CreateButton">
+    <input type="create" name="Create New Event" value="Create">
+  </div>
 	<!--__________LeftSideBegin__________-->
   <div class="splitleft-box">
     <form>
@@ -66,8 +70,24 @@
   <div class="SubmitButton">
     <input type="submit" name="submit" value="Submit"  ng-click="createEventType()">
   </div>
-
 </div>
+	<table class="table table-striped table-hover">
+		<caption>Favorite Events</caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="FavoriteEvent in favoriteEvents">
+          <td>{{FavoriteEvent.name}}</td>
+          <td>{{FavoriteEvent.address}}</td>
+          <td>{{FavoriteEvent.date}}</td>
+        </tr>
+      </tbody>
+    </table>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>

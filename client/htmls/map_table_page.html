@@ -1,111 +1,96 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <style type="text/css">
-    @import url("../css/map_style.css");
-    </style>
-  </head>
-  <title>UF Food App Map</title>
-  <body ng-app="homeApplication">
-    <div class="container" ng-controller="homeController">
-      <div class="row">
-        <ol>
-          <li>
-            <h1 class="text-center"><strong>Terabyte</strong></h1>
-            <h1>Username: {{username}}</h1>
-          </li>
-        </ol>
-      </div>
-    <div class="row">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<style type="text/css">
+@import url("../css/map_style.css");
+</style>
+</head>
+<title>UF Food App Map</title>
+<body ng-app="homeApplication">
+<div class="container" ng-controller="homeController">
+  <div class="row">
+    <ol>
+      <li>
+        <h1 class="text-center"><strong>Terabyte</strong></h1>
+        <h1>Username: {{username}}</h1>
+      </li>
+    </ol>
+  </div>
+  <div class="row"> 
     <!--__________HomeBegin__________-->&nbsp;
-    <div align="left" class="container">
-        <a href="/" class="btn btn-primary btn-small" >
-          <span class="glyphicon glyphicon-home" ></span> Home
-        </a>
-    <!--__________HomeEnd__________-->
-
-    <!--__________SearchBegin__________-->
-        <a href="#" class="btn btn-primary btn-small" >
-          <span class="glyphicon glyphicon-search"></span> Search
-        </a>
-    <!--__________SearchEnd__________-->
-
-    <!--__________UserBegin__________-->
-        <a href="/account" class="btn btn-primary btn-small" >
-          <span class="glyphicon glyphicon-user"></span> User
-        </a>
-    <!--__________UserEnd__________-->
-
-    <!--__________LogInBegin__________-->
-        <a href="/signin" class="btn btn-primary btn-small" >
-          <span class="glyphicon glyphicon-log-in"></span> Log in
-    </a>
-    </div>
+    <div align="left" class="container"> <a href="/" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-home" ></span> Home </a> 
+      <!--__________HomeEnd__________--> 
+      
+      <!--__________SearchBegin__________--> 
+      <a href="#" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-search"></span> Search </a> 
+      <!--__________SearchEnd__________--> 
+      
+      <!--__________UserBegin__________--> 
+      <a href="/account" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-user"></span> User </a> 
+      <!--__________UserEnd__________--> 
+      
+      <!--__________LogInBegin__________--> 
+      <a href="/signin" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-log-in"></span> Log in </a> </div>
     <!--__________LogInEnd__________-->
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <!--Nested row-->
-            <div class="row" ng-controller="ListingsController">
-                <div class="col-md-12">
-                    <!--__________Search Box__________-->
-                    <div class="input-group" id="searchBar">
-                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" class="form-control" placeholder="Search">
-            </div>
-
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"> 
+          <!--Nested row-->
+          <div class="row" ng-controller="ListingsController">
+            <div class="col-md-12"> 
+              <!--__________Search Box__________-->
+              <div class="input-group" id="searchBar"> <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              
               <!--__________Table__________-->
-            <table class="table table-striped table-hover">
-              <!--__________Table Fields__________-->
-              <tr>
-                <th>Organization</th>
-                <th>Event Name</th>
-                <th>Date</th>
-                <th>Favorites</th>
-              </tr>
-
-              <tr>
+              <table class="table table-striped table-hover">
+                <!--__________Table Fields__________-->
+                <tr>
+                  <th>Organization</th>
+                  <th>Event Name</th>
+                  <th>Date</th>
+                  <th>Favorites</th>
+                </tr>
                   <!--__________Not Functional__________-->
-                 <td ng-repeat="record in listings | filter:search" ng-click="showDetails()">
+                  <tr g-repeat="record in listings | filter:search" ng-click="showDetails()">
                   <td>{{record.organization}}</td>
                   <td>{{record.event_name}}</td>
                   <td>{{record.date}}</td>
-                  <td class= "Favorites"> <a href="#" class="btn btn-success btn-xs">
-                  <span class="glyphicon glyphicon-star-empty"></span>
-              </tr>
-            </table>
-
-                </div>
+                  <td class= "Favorites"><a href="#" class="btn btn-success btn-xs"> <span class="glyphicon glyphicon-star-empty"></span></a></td>  
+                </tr>
+              </table>
             </div>
+            
             <!--Nested rows-->
-                <div class="col-md-12">
+            <div class="col-md-12"> 
               <!--__________Jumbotron__________-->
-          <div class="jumbotron">
-            <h3>Detailed Information</h3>
-            <!--__________Not Functional__________-->
-             <h4><strong>Organization:</strong> {{detailedInfo.organization}}</h4>
-             <h4><strong>Event:</strong> {{detailedInfo.name}}</h4>
-             <h4><strong>Date:</strong> {{detailedInfo.date}}</h4>
-             <h4><strong>Time:</strong> {{detailedInfo.time}}</h4>
-             <h4><strong>Food:</strong> {{detailedInfo.food}}</h4>
-            </table>
-                </div>
+              <div class="jumbotron">
+                <h3>Detailed Information</h3>
+                <!--__________Not Functional__________-->
+                <h4><strong>Organization:</strong> {{detailedInfo.organization}}</h4>
+                <h4><strong>Event:</strong> {{detailedInfo.name}}</h4>
+                <h4><strong>Date:</strong> {{detailedInfo.date}}</h4>
+                <h4><strong>Time:</strong> {{detailedInfo.time}}</h4>
+                <h4><strong>Food:</strong> {{detailedInfo.food}}</h4>
+              </div>
             </div>
+          </div>
         </div>
-
-        <!--Map-->
-        <div class="col-md-6">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3467.5299317624394!2d-82.34386882054024!3d29.64639307738292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1539643190475" width="560" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>
+      </div>
     </div>
+    
+    <!--Map-->
+    <div class="col-md-6">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3467.5299317624394!2d-82.34386882054024!3d29.64639307738292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1539643190475" width="560" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+  </div>
 </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-    <script src="../controllers/homeController.js"></script>
-  </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> 
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script> 
+<script src="../controllers/homeController.js"></script>
+</body>
 </html>

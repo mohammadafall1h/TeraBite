@@ -16,6 +16,7 @@ h1 {
     font-size: 22px;
 }
 
+
 .splitleft-box {
     width: 320px;
     height: 450px;
@@ -40,7 +41,7 @@ h1 {
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 50px 20px;
-}
+*}
 
 .PageContainer {
   position: relative;
@@ -153,7 +154,6 @@ h1 {
     bottom: 50%;
     right: 0%;
 }
-
 /*__________Formarting Input Box Width & Bottom Spacing__________*/
 .SubmitButton input{
     width: 100%;
@@ -166,17 +166,63 @@ h1 {
     background: #39dc79;
     color: #000;
 }
+.CreateButton {
+    width: 300px;
+    color: #fff;
+    left: 38.5%;
+    position: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
 
+
+/*__________Formarting Submit Input Box__________*/
+.CreateButton input[type="create"]{
+  /*__________Background Box Format__________*/
+    border: none;
+    outline: none;
+    height: 40px;
+    border-radius: 20px;
+    background: #1c8adb;
+    /*__________Text Format__________*/
+    color: #fff;
+    font-size: 18px;
+    right: 0%;
+}
+.CreateButton input{
+    width: 100%;
+}
+
+/*__________Hovering over Submit Input Box__________*/
+.CreateButton input[type="create"]:hover{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
 table{
 	border: 2px solid #1c8adb;
+	
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 50%;
     left: 50%;
-    box-sizing: border-box;
+	bottom: 50%;
     padding: 70px 30px;
 }
-
+table[name="eventTable"]{
+	border: 2px solid #1c8adb;
+	
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: static;
+    padding: 70px 30px;
+}
+caption{
+	color:black;
+	font-size: 28px;
+}
 /*__________Table Header__________*/
 th {
     background-color: #424242;
@@ -189,6 +235,7 @@ td{
 
 td:hover {
 	background-color: #1c8adb;
+	color: black
 }
 
 /*__________?__________*/
