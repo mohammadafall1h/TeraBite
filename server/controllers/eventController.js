@@ -76,3 +76,14 @@ exports.update = function(req, res) {
     }
   });
 };
+
+exports.eventByID = function(req, res, next, id) {
+  models.events.findById(id).exec(function(err, event) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.event = event;
+      next();
+    }
+  });
+};
