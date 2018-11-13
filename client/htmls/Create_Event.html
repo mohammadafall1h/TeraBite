@@ -18,9 +18,9 @@
 	</div>
 
   <!-- Org Events Table -->
-  <div id="orgEvents" class="container" style="display:none">
-    <h1 color="white" class="ng-binding text-capitalize" data_temp_dwid="0"><h1 color="white">{{owner.org}} Events</h1></h1>
-    <table class="table table-striped table-hover" name="eventTable">
+  <div id="orgEvents" class="container" style="overflow-y:auto;">
+    <h1 color="white" id="orgName" class="ng-binding text-capitalize" data_temp_dwid="0"><h1 color="white">{{owner.org}} Events</h1></h1>
+    <table class="table table-striped table-hover" id="tableEvent" name="eventTable">
       <thead>
         <tr>
           <th scope="col">Name</th>
@@ -40,42 +40,70 @@
         </tr>
       </tbody>
     </table>
-    <input class="submitButton" type="submit" name="create" value="Create New Event" ng-click="toggleTable()">
+    <input class="createButton" id="createNewEv"type="submit" name="create" value="Create New Event" ng-click="toggleTable()">
   </div>
 
 	<!--__________LeftSideBegin__________-->
   <div id="eventForm" class="container" style="display:none">
-  <div class="splitleft-box">
+  <div class="jumbotron">
     <form>
-      <p>Event Name</p>
-      <input type="text" name="eventName" placeholder="Event name" ng-model="name">
-      <p>Event Address</p>
-      <input type="text" name="address" placeholder="Enter address" ng-model="address">
-      <p>Room Number</p>
-      <input type="text" name="room" placeholder="Enter room number" ng-model="room">
+      <div class="form-group">
+        <h1>Create Event</h1>
+      </div>
+      <div class= "form-group row">
+        <div class="form-group col-md-6">
+      <label for="eventName">Name</label>
+      <input type="text" id="eventName" class="form-control" placeholder="Event name" ng-model="name">
+    </div>
+      <div class="form-group col-md-6">
+      <label for="room">Room</label>
+        <input type="text" id="room" class="form-control" placeholder="Enter room number" ng-model="room">
+      </div>
+    </div>
+    <div class="form-group">
+    <label for="address"> Address </label>
+    <input type="text" id="address" class="form-control" placeholder="Enter address" ng-model="address">
+    </div>
+    <div class="form-group row">
+      <div class="form-group col-md-6">
+      <label for="date"> Date </label>
+  		<input type="date" id="date" class="form-control" ng-model="date">
+    </div>
+      <div class="form-group col-md-6">
+  		<label for="usr_time"> Time </label>
+  		<input type="time" id="usr_time" class="form-control" ng-model="time">
+    </div>
+    </div>
+    <div class="form-group row">
+      <div class="form-group col-md-6">
+      <label for="food"> Event Food Type </label>
+      <textarea id="food" placeholder="Enter food hosted at event." class="form-control" ng-model="food"></textarea>
+    </div>
+      <div class="form-group col-md-6">
+        <label for="info">Event Description </label>
+        <textarea id="info" placeholder="Enter description of event activities."  class="form-control"  ng-model="description"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="form-group col-md-6">
+      <div class="SubmitButton">
+        <input type="submit" name="submit" value="Submit"  ng-click="createEventType()">
+      </div>
+    </div>
+    <div class="=form-group col-md-6">
+      <div class="CancelButton">
+        <input type="submit" name="Cancel" id="CancelButton" value="Cancel"  ng-click="toggleTableOff()">
+      </div>
+    </div>
+  </div>
     </form>
   </div>
-  <!--__________RightSideBegin__________-->
-  <div class="splitright-box">
-    <form action="/action_page.php">
-  		<p>Event Date</p>
-  		<input type="date" name="bday" ng-model="date">
-  		<p>Event Time</p>
-  		<input type="time" name="usr_time" ng-model="time">
-      <p>Event Food</p>
-      <textarea name="food" placeholder="Enter food hosted at event." cols="33" rows="3" ng-model="food"></textarea>
-      <p>Event Description</p>
-      <textarea name="info" placeholder="Enter description of event activities." cols="33" rows="3" ng-model="description"></textarea>
-    </form>
-  </div>
-  <div class="SubmitButton">
-    <input type="submit" name="submit" value="Submit"  ng-click="createEventType()">
-  </div>
+
   </div>
 
   <div id="userFavs" class="container">
-  <h1>{{owner.username}}'s Favorites</h1>
-	<table class="table table-striped table-hover">
+  <h1 id="favName">{{owner.username}}'s Favorites</h1>
+	<table class="table table-striped table-hover" id="TableFavorite">
       <thead>
         <tr>
           <th scope="col">Name</th>

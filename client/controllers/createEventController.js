@@ -36,8 +36,15 @@ createApp.controller('createEventController', function($scope, createEventFactor
   //be able to open the create event form
   $scope.toggleTable = function(){
     $("#eventForm").toggle();
-  }
+    $("#userFavs").toggle();
+    $("#orgEvents").toggle();
 
+  }
+  $scope.toggleTableOff = function(){
+    $("#eventForm").toggle();
+    $("#userFavs").toggle();
+    $("#orgEvents").toggle();
+  }
   /* variables bound to form inputs */
   $scope.name= "";
   $scope.address = "";
