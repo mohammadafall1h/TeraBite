@@ -12,8 +12,7 @@
   <div class="row">
     <ol>
       <li>
-        <h1 class="text-center"><strong>Terabyte</strong></h1>
-        <h1>Username: {{username}}</h1>
+        <h1 class="text-center" id="title"><strong>Terabyte</strong></h1>
       </li>
     </ol>
   </div>
@@ -55,26 +54,25 @@
                   <th>Favorites</th>
                 </tr>
                   <!--__________Not Functional__________-->
-                  <tr ng-repeat="event in events" ng-click="getDetails()">
+                  <tr ng-repeat="event in events" ng-click="getDetails($index)">
                   <td>{{event.owner}}</td>
                   <td>{{event.name}}</td>
                   <td>{{event.date}}</td>
-                  <td type = "buttun" class="glyphicon glyphicon-star-empty"></td>
+                  <td type = "button" class="glyphicon glyphicon-star-empty"></td>
                 </tr>
               </table>
             </div>
-
             <!--Nested rows-->
-            <div class="col-md-12">
+            <div class="col-md-8">
               <!--__________Jumbotron__________-->
               <div class="jumbotron">
                 <h3>Detailed Information</h3>
                 <!--__________Not Functional__________-->
-                <h4><strong>Organization:</strong> {{detailedInfo.owner}}</h4>
-                <h4><strong>Event:</strong> {{detailedInfo.name}}</h4>
-                <h4><strong>Date:</strong> {{detailedInfo.date}}</h4>
-                <h4><strong>Time:</strong> {{detailedInfo.time}}</h4>
-                <h4><strong>Food:</strong> {{detailedInfo.food}}</h4>
+                <h4><strong>Organization:</strong> {{DetailEvent.owner}}</h4>
+                <h4><strong>Event:</strong> {{DetailEvent.name}}</h4>
+                <h4><strong>Date:</strong> {{DetailEvent.date}}</h4>
+                <h4><strong>Time:</strong> {{DetailEvent.time}}</h4>
+                <h4><strong>Food:</strong> {{DetailEvent.food}}</h4>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ homeApp.controller('homeController', function($scope, homeFactory){
   //check the user then bind it to the username display
   $scope.username = "";
   $scope.events;
-  $scope.detailedInfo;
+  $scope.DetailEvent=undefined;
 
   homeFactory.getUser().then(function(response) {
     //do stuff on response
@@ -29,15 +29,9 @@ homeApp.controller('homeController', function($scope, homeFactory){
     //do stuff on error
     console.log('No events to display.');
   });
-
-
-  homeFactory.getDetails().then(function() {
-    //do stuff on response
-      $scope.detailedInfo = response.data;
-  }, function(error) {
-    //do stuff on error
-    console.log('No details to display.');
-  });
+  $scope.getDetails = function(index){
+  $scope.DetailEvent= $scope.events[index];
+  };
 
 }); //end homeController
 
