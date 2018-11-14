@@ -60,7 +60,7 @@ loginApp.factory('loginFactory', function($http){
 
     //sends post request to /api/functions
     loginAccount: function(login) {
-	     return $http.post('http://terabite.herokuapp.com/api/functions/login', login);
+	     return $http.post('https://terabite.herokuapp.com/api/functions/login', login);
     }
 
   }; //end methods

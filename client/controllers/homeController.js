@@ -65,19 +65,19 @@ homeApp.factory('homeFactory', function($http){
 
     //sends get request to check if there is currently a user logged in
     getUser: function() {
-	     return $http.get('http://terabite.herokuapp.com/api/functions/login');
+	     return $http.get('https://terabite.herokuapp.com/api/functions/login');
     },
     getEvents: function() {
-      return $http.get('http://terabite.herokuapp.com/api/functions/event');
+      return $http.get('https://terabite.herokuapp.com/api/functions/event');
     },
     getDetails: function() {
-      return $http.get('http://terabite.herokuapp.com/api/functions/event');
+      return $http.get('https://terabite.herokuapp.com/api/functions/event');
     },
     createFav: function(fav) {
-      return $http.post('http://terabite.herokuapp.com/api/functions/favorites', fav);
+      return $http.post('https://terabite.herokuapp.com/api/functions/favorites', fav);
     },
     getFav: function() {
-      return $http.get('http://terabite.herokuapp.com/api/functions/favorites');
+      return $http.get('https://terabite.herokuapp.com/api/functions/favorites');
     }
   }; //end methods
 
