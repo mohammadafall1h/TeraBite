@@ -29,7 +29,12 @@ router.route('/favorites')
   .get(favorites.listUserFavs)
   .post(favorites.create);
 
-router.params('favByID',favorites.favByID);
+//params routes
+router.route('/event/:eventID')
+  .post(events.update)
+  .delete(events.delete);
 
-router.params('eventByID',events.eventByID);
+router.param('favByID', favorites.favByID);
+
+router.param('eventID', events.eventByID);
 module.exports = router;

@@ -93,10 +93,7 @@ createApp.controller('createController', function($scope, createFactory){
       else {
         createFactory.createUserAccount($scope.accInfo).then(function(response) {
           //do stuff on response
-          if(window.confirm(response.data)){
-            //re-route to sign-in
-            window.location = '/signin';
-          }
+          window.location = '/signin';
         }, function(error) {
           //do stuff on error
           window.alert(error.data);
