@@ -1,0 +1,79 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    background: url(../images/backgroundMain.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+/*__________Search Bar__________*/
+#searchBar {
+  margin: 15px 10px;
+}
+#title{
+font-size: 35px;
+}
+
+.jumbotron{
+    border: 2px solid #1c8adb;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/*__________Table Box__________*/
+table[name="eventTable"]{
+	  border: round;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 100%;
+    left: 50%;
+    width: 100%;
+    height: 200px;
+    overflow-y: auto ;
+}
+
+/*__________Table Header__________*/
+th {
+    background-color: lightgrey;
+      border: solid 1px #DDEEEE;
+    color: black;
+}
+
+td{
+    color: white;
+      border: solid 1px #DDEEEE;
+    background-color: black;
+}
+td:hover {
+	background-color: #1c8adb;
+}
+
+h1{
+	color: white;
+	margin: 0;
+    text-align: center;
+    font-size: 30px;
+	font-family: sans-serif;
+}
+td[type=button]{
+  background: blue;
+  width: 100%;
+  text-align: center;
+}
+/*__________?__________*/
+col{
+	border:  4px solid #00045B;
+}
+/* CSS Document */
+
+
+.text-center {
+
+}
