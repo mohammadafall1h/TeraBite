@@ -29,9 +29,11 @@ homeApp.controller('homeController', function($scope, homeFactory){
     //do stuff on error
     console.log('No events to display.');
   });
-  $scope.getDetails = function(index){
-  $scope.DetailEvent= $scope.events[index];
-  };
+  $scope.getDetails = function(response){
+  $scope.DetailEvent= response;
+},function(error){
+  console.log('could not display event');
+};
 
 }); //end homeController
 

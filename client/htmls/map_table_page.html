@@ -54,7 +54,7 @@
                   <th>Favorites</th>
                 </tr>
                   <!--__________Not Functional__________-->
-                  <tr ng-repeat="event in events" ng-click="getDetails($index)">
+                  <tr ng-repeat="event in events" ng-click="getDetails(event)">
                   <td>{{event.owner}}</td>
                   <td>{{event.name}}</td>
                   <td>{{event.date}}</td>
