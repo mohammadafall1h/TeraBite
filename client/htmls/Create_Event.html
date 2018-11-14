@@ -15,7 +15,7 @@
 	</div>
 
   <!-- Org Events Table -->
-  <div id="orgEvents" class="container" style="overflow-y:auto;" style="display:none">
+  <div id="orgEvents" class="container" style="overflow-y:auto;">
     <h1 color="white" id="orgName" class="ng-binding text-capitalize" data_temp_dwid="0"><h1 color="white">{{owner.org}} Events</h1></h1>
     <table class="table table-striped table-hover" id="tableEvent" name="eventTable">
       <thead>
@@ -107,16 +107,20 @@
 	<table class="table table-striped table-hover" id="TableFavorite">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Address</th>
+          <th scope="col">Organizer</th>
+          <th scope="col">Event Name</th>
           <th scope="col">Date</th>
+          <th scope="col">Unfavorite</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="FavoriteEvent in favoriteEvents">
-          <td>{{FavoriteEvent.name}}</td>
-          <td>{{FavoriteEvent.address}}</td>
-          <td>{{FavoriteEvent.date}}</td>
+        <tr ng-repeat="fav in favs">
+          <td>{{fav.owner}}</td>
+          <td>{{fav.name}}</td>
+          <td>{{fav.date}}</td>
+          <td>
+            <button type="button" class="glyphicon glyphicon-remove" ng-click="deleteFav(fav)"></button>
+          </td>
         </tr>
       </tbody>
     </table>

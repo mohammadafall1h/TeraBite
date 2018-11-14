@@ -47,8 +47,9 @@ exports.listUserFavs = function(req, res) {
 //delete a favorite
 exports.delete = function(req, res) {
   var favorite = req.favorite;
+  var userID = req.user._id
 
-  favorite.remove(function(err){
+  models.favorites.deleteOne({userID : userID, eventID : favorite._id}).exec(function(err){
     if(err){
       console.log(err);
       res.status(400).send(err);
@@ -56,7 +57,7 @@ exports.delete = function(req, res) {
     else{
       res.end();
     }
-  })
+  });
 };
 
 exports.favByID = function(req, res, next, id) {
