@@ -32,6 +32,7 @@ createApp.controller('createEventController', function($scope, createEventFactor
       console.log('Could not retreive user\'s events');
     });
   }
+  $scope.getEvents();
 
   //be able to open the create event form
   $scope.toggleTable = function(){
