@@ -15,9 +15,11 @@ exports.create = function(req, res) {
   });
 };
 
-//list all favorites
-exports.list = function(req, res) {
-  models.favorites.find().exec(function(err, favorites) {
+//list all favorites of logged in user
+exports.listUserFavs = function(req, res) {
+  id = req.user._id;  //get ID from logged in user
+  console.log("looking for favorites owned by " +  id);
+  models.favorites.find({ userID: id }).exec(function(err, favorites) {
     if (err){
       res.status(400).send(err);
     } else {
@@ -39,4 +41,15 @@ exports.delete = function(req, res) {
       res.end();
     }
   })
+};
+
+exports.favByID = function(req, res, next, id) {
+  models.events.findById(id).exec(function(err, favorite) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.favorite = favorite;
+      next();
+    }
+  });
 };
