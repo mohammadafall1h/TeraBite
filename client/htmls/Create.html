@@ -6,33 +6,19 @@
 <title>Terabite Accout Creation</title>
 </head>
 <body ng-app="createApplication">
-<div class="navigation"> 
-  <!--__________NavigationBegin__________--> 
   
-  <!--__________HomeBegin__________-->
-  <div align="left" class="container"> <a href="/" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-home"></span> Home </a> 
-    <!--__________HomeEnd__________--> 
-    
-    <!--__________SearchBegin__________--> 
-    <a href="#" class="btn btn-primary btn-small"> <span class="glyphicon glyphicon-search"></span> Search </a> 
-    <!--__________SearchEnd__________--> 
-    
-    <!--__________UserBegin__________--> 
-    <a href="#" class="btn btn-primary btn-small"> <span class="glyphicon glyphicon-user"></span> User </a> 
-    <!--__________UserEnd__________--> 
-    
-    <!--__________LogoutBegin__________--> 
-    <a href="#" class="btn btn-primary btn-small"> <span class="glyphicon glyphicon-log-out"></span> Log out </a> 
-    <!--__________LogoutEnd__________--> 
+<div class="navigation">
+  <!--__________NavigationBegin__________-->
+  <div align="left" class="container">
+    <a href="/" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-home"></span> Home </a>
   </div>
-  
-  <!--__________NavigationEnd__________--> 
+  <!--__________NavigationEnd__________-->
 </div>
 <div class="formControl" ng-controller="createController">
-  <div class="splitleft-box"> 
-    <!--__________Source for Avatar Image__________--> 
-    <!--__________<img src="avatar.png" class="avatar">__________--> 
-    
+  <div class="splitleft-box">
+    <!--__________Source for Avatar Image__________-->
+    <!--__________<img src="avatar.png" class="avatar">__________-->
+
     <!--__________Form Begin__________-->
     <form>
       <!--__________Email Text__________-->
@@ -47,18 +33,18 @@
       <!--__________Repeat Password Text__________-->
       <p>Repeat Password</p>
       <input type="password" name="password" placeholder="Re-enter Password" ng-model="repeat">
-      <a href="/signin" class="hyperlink">Already a user? Log In</a> 
+      <a href="/signin" class="hyperlink">Already a user? Log In</a>
       <!--__________CheckEnd__________-->
-      
+
     </form>
-    <!--__________Form End__________--> 
-    
-    <!--__________LeftSideEnd__________--> 
+    <!--__________Form End__________-->
+
+    <!--__________LeftSideEnd__________-->
   </div>
-  <div class="splitright-box"> 
-    <!--__________Source for Avatar Image__________--> 
-    <!--__________<img src="avatar.png" class="avatar">__________--> 
-    
+  <div class="splitright-box">
+    <!--__________Source for Avatar Image__________-->
+    <!--__________<img src="avatar.png" class="avatar">__________-->
+
     <!--__________Form Begin__________-->
     <form>
       <p> Are you an event Organizer?</p>
@@ -71,23 +57,23 @@
       <!--__________Email Text__________-->
       <p>Organization Name</p>
       <input type="text" name="event organizer name" id="orgName" placeholder="Enter Organization Name" ng-model="org">
-      <!--__________Username Text__________--> 
-      
+      <!--__________Username Text__________-->
+
       <!--__________CheckEnd__________-->
-      
+
     </form>
-    <!--__________Form End__________--> 
+    <!--__________Form End__________-->
   </div>
-  <div class="SubmitButton"> 
+  <div class="SubmitButton">
     <!--__________Submit Input (Button)__________-->
     <input type="submit" name="submit" value="Submit" ng-click="createUserAccount()">
   </div>
 </div>
 
-<!-- Scripts Begin --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> 
-<script src="https://code.angularjs.org/1.4.3/angular.js"></script> 
+<!-- Scripts Begin -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 <script src="../controllers/createController.js"></script>
 </body>
 </html>

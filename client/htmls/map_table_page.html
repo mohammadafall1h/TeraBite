@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<style type="text/css">
-@import url("../css/map_style.css");
-</style>
+  <title>UF Food App Map</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <style type="text/css">
+  @import url("../css/map_style.css");
+  </style>
 </head>
-<title>UF Food App Map</title>
 <body ng-app="homeApplication">
 <div class="container" ng-controller="homeController">
   <div class="row">
@@ -18,19 +18,14 @@
   </div>
   <div class="row">
     <!--__________HomeBegin__________-->&nbsp;
-    <div align="left" class="container"> <a href="/" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-home" ></span> Home </a>
-      <!--__________HomeEnd__________-->
-
-      <!--__________SearchBegin__________-->
-      <a href="#" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-search"></span> Search </a>
-      <!--__________SearchEnd__________-->
-
-      <!--__________UserBegin__________-->
-      <a href="/account" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-user"></span> User </a>
-      <!--__________UserEnd__________-->
-
-      <!--__________LogInBegin__________-->
-      <a href="/signin" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-log-in"></span> Log in </a> </div>
+    <div align="left" class="container">
+      <a href="/" id="home" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-home" ></span> Home </a>
+      <a href="/account" id="user" class="btn btn-primary btn-small" style="display:none"> <span class="glyphicon glyphicon-user"></span> User </a>
+      <a href="/signin" id="login" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-log-in"></span> Log in </a>
+      <a href="/signup" id="signup" class="btn btn-primary btn-small" > <span class="glyphicon glyphicon-log-in"></span> Signup </a>
+      <a href="/logout" id="logout" class="btn btn-primary btn-small" style="display:none"> <span class="glyphicon glyphicon-log-out"></span> Logout </a>
+    </div>
+  </div>
     <!--__________LogInEnd__________-->
 
     <div class="container">

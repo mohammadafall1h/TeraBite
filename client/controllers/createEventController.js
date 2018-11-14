@@ -47,6 +47,7 @@ createApp.controller('createEventController', function($scope, createEventFactor
     $("#eventForm").toggle();
     $("#userFavs").toggle();
     $("#orgEvents").toggle();
+    $("#headerBtns").toggle();
   }
 
   $scope.updateOrCreate = function(){

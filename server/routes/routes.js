@@ -34,6 +34,9 @@ router.route('/event/:eventID')
   .post(events.update)
   .delete(events.delete);
 
+router.route('/favorites/:favID')
+  .delete(favorites.delete)
+
 router.param('favByID', favorites.favByID);
 
 router.param('eventID', events.eventByID);

@@ -50,6 +50,11 @@ module.exports.init = function() {
     res.sendFile(path.join(__dirname + '../../../client/htmls/Create_Event.html'));
   });
 
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
+
   // redirect anything that isnt an pathname specified above
   app.get('*', function(req, res){
       res.redirect('/');

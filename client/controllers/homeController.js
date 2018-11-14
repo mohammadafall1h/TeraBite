@@ -4,17 +4,23 @@ var homeApp = angular.module('homeApplication', []);
 /* creates the controller for login.html (ng-controller) */
 homeApp.controller('homeController', function($scope, homeFactory){
   //check the user then bind it to the username display
-  $scope.username = "";
+  $scope.user;
   $scope.events;
   $scope.DetailEvent=undefined;
 
   homeFactory.getUser().then(function(response) {
     //do stuff on response
     if(response.data === "No User"){
-      $scope.username = response.data;
+      $scope.user = response.data;
     }
     else {
-      $scope.username = response.data.username;
+      $scope.user = response.data;
+      //user logged in turn off login/signin buttons
+      //turn on account page and logout
+      $("#user").show();
+      $("#logout").show();
+      $("#login").hide();
+      $("#signup").hide();
     }
   }, function(error) {
     //do stuff on error
