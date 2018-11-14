@@ -4,14 +4,14 @@ var homeApp = angular.module('homeApplication', []);
 /* creates the controller for login.html (ng-controller) */
 homeApp.controller('homeController', function($scope, homeFactory){
   //check the user then bind it to the username display
-  $scope.user;
+  $scope.user=undefined;
   $scope.events;
   $scope.DetailEvent=undefined;
 
   homeFactory.getUser().then(function(response) {
     //do stuff on response
     if(response.data === "No User"){
-      $scope.user = response.data;
+      //no user do nothing
     }
     else {
       $scope.user = response.data;
@@ -35,11 +35,25 @@ homeApp.controller('homeController', function($scope, homeFactory){
     //do stuff on error
     console.log('No events to display.');
   });
-  $scope.getDetails = function(response){
-  $scope.DetailEvent= response;
-},function(error){
-  console.log('could not display event');
-};
+
+  $scope.getDetails = function(event){
+    $scope.DetailEvent= event;
+  };
+
+  $scope.addFavorite = function(fav){
+    if($scope.user){
+      var favorite = {
+        userID: $scope.user._id,
+        eventID: fav._id
+      }
+
+      homeFactory.createFav(favorite).then(function(response){
+        //favorite created
+      }, function(error){
+        window.alert(error.data);
+      });
+    }
+  } //end addFavorite
 
 }); //end homeController
 
@@ -56,6 +70,12 @@ homeApp.factory('homeFactory', function($http){
     },
     getDetails: function() {
       return $http.get('http://localhost:8080/api/functions/event');
+    },
+    createFav: function(fav) {
+      return $http.post('http://localhost:8080/api/functions/favorites', fav);
+    },
+    getFav: function() {
+      return $http.get('http://localhost:8080/api/functions/favorites');
     }
   }; //end methods
 
