@@ -28,4 +28,8 @@ router.route('/event/org')
 router.route('/favorites')
   .get(favorites.listUserFavs)
   .post(favorites.create);
+
+router.params('favByID',favorites.favByID);
+
+router.params('eventByID',events.eventByID);
 module.exports = router;
