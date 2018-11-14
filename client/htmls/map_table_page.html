@@ -40,10 +40,11 @@
           <div class="row">
             <div class="col-md-12">
               <!--__________Search Box__________-->
-              <div class="input-group" id="searchBar"> <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-                <input type="text" class="form-control" placeholder="Search">
+              <div class="input-group" id="searchBar">
+                 <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
               </div>
-
+              <div class="tableWrapper">
               <!--__________Table__________-->
               <table class="table table-striped table-hover">
                 <!--__________Table Fields__________-->
@@ -54,13 +55,14 @@
                   <th>Favorites</th>
                 </tr>
                   <!--__________Not Functional__________-->
-                  <tr ng-repeat="event in events" ng-click="getDetails(event)">
+                  <tr ng-repeat="event in events | filter: searchText "  ng-click="getDetails(event)">
                   <td>{{event.owner}}</td>
                   <td>{{event.name}}</td>
                   <td>{{event.date}}</td>
                   <td type = "button" class="glyphicon glyphicon-star-empty"></td>
                 </tr>
               </table>
+            </div>
             </div>
             <!--Nested rows-->
             <div class="col-md-8">
