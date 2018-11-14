@@ -1,6 +1,7 @@
 var events = require('../controllers/eventController.js'),
     users = require('../controllers/userController.js'),
     login = require('../controllers/loginController.js'),
+    favorites = require('../controllers/favController.js'),
     express = require('express'),
     passport = require('passport'),
     router = express.Router();
@@ -24,4 +25,7 @@ router.route('/event')
 router.route('/event/org')
   .get(events.listByOrganizer);
 
+router.route('/favorites')
+  .get(favorites.listUserFavs)
+  .post(favorites.create);
 module.exports = router;
