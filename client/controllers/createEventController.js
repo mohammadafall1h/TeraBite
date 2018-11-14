@@ -10,9 +10,11 @@ createApp.controller('createEventController', function($scope, createEventFactor
     //do stuff on response
     $scope.owner = response.data;
 
-    //check who the user is and show the event creator stuff if they are an event creator
+    //check who the user is and hide event creator stuff if they arent one
     if(!$scope.owner.isEventCreator){
       $("#orgEvents").hide();
+    }
+    else{
       //get a list of their events
       $scope.getEvents();
     }
@@ -32,7 +34,28 @@ createApp.controller('createEventController', function($scope, createEventFactor
       console.log('Could not retreive user\'s events');
     });
   }
-  $scope.getEvents();
+
+  //get their favorites
+  $scope.favs;
+  $scope.getFavs = function(){
+    createEventFactory.getFavs().then(function(response) {
+      $scope.favs = response.data;
+    }, function(err) {
+      window.alert("Could not get favorites.");
+    });
+  }
+  $scope.getFavs();
+
+  //delete a favorite
+  $scope.deleteFav = function(fav){
+    $scope.favID = fav._id;
+    createEventFactory.deleteFav($scope.favID).then(function(response) {
+      //deleted the favorite, get new favorites
+      $scope.getFavs();
+    }, function(err) {
+      window.alert(err.data);
+    });
+  }
 
   //be able to open the create event form
   $scope.toggleTable = function(){
@@ -335,6 +358,12 @@ createApp.factory('createEventFactory', function($http){
     },
     updateEvent: function(id, update) {
       return $http.post('https://terabite.herokuapp.com/api/functions/event/' + id, update);
+    },
+    getFavs: function() {
+      return $http.get('https://terabite.herokuapp.com/api/functions/favorites');
+    },
+    deleteFav: function(id) {
+      return $http.delete('https://terabite.herokuapp.com/api/functions/favorites/' + id);
     }
   }; //end methods
 
