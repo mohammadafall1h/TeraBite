@@ -322,19 +322,19 @@ createApp.factory('createEventFactory', function($http){
 
     //sends post request to /api/functions
     createEvent: function(evntinfo) {
-	     return $http.post('http://localhost:8080/api/functions/event', evntinfo);
+	     return $http.post('http://terabite.herokuapp.com/api/functions/event', evntinfo);
     },
     getUser: function() {
-	     return $http.get('http://localhost:8080/api/functions/login');
+	     return $http.get('http://terabite.herokuapp.com/api/functions/login');
     },
     getEvents: function() {
-      return $http.get('http://localhost:8080/api/functions/event/org');
+      return $http.get('http://terabite.herokuapp.com/api/functions/event/org');
     },
     deleteEvent: function(id) {
-      return $http.delete('http://localhost:8080/api/functions/event/' + id)
+      return $http.delete('http://terabite.herokuapp.com/api/functions/event/' + id)
     },
     updateEvent: function(id, update) {
-      return $http.post('http://localhost:8080/api/functions/event/' + id, update);
+      return $http.post('http://terabite.herokuapp.com/api/functions/event/' + id, update);
     }
   }; //end methods
 

@@ -109,7 +109,7 @@ createApp.factory('createFactory', function($http){
 
     //sends post request to /api/functions
     createUserAccount: function(accInfo) {
-	     return $http.post('http://localhost:8080/api/functions/user', accInfo);
+	     return $http.post('http://terabite.herokuapp.com/api/functions/user', accInfo);
     }
 
   }; //end methods
