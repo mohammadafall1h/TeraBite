@@ -11,8 +11,8 @@ createApp.controller('createEventController', function($scope, createEventFactor
     $scope.owner = response.data;
 
     //check who the user is and show the event creator stuff if they are an event creator
-    if($scope.owner.isEventCreator){
-      $("#orgEvents").show();
+    if(!$scope.owner.isEventCreator){
+      $("#orgEvents").hide();
       //get a list of their events
       $scope.getEvents();
     }

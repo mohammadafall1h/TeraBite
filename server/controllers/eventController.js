@@ -44,16 +44,38 @@ exports.listByOrganizer = function(req, res){
 exports.delete = function(req, res) {
 
   var event = req.event;
+  var eventID = event._id;
   event.remove(function(err){
     if(err){
       console.log(err);
       res.status(400).send(err);
     }
     else{
-      res.end();
+      //find all the favorites of this event and delete those too
+      models.favorites.find({eventID : eventID}).exec(function(err, favs) {
+        if(err){
+          console.log(err);
+          res.status(400).send(err);
+        } else {
+          //loop through all favs and delete them
+          var usersDelete = [];
+          favs.forEach(function(item){
+            usersDelete.push(item._id);
+          });
+          console.log("deleting: " + favs);
+          models.favorites.remove({'_id':{'$in': usersDelete}}).exec(function(err){
+            if(err){
+              console.log(err);
+              res.status(400).send(err);
+            } else {
+              res.send("deleted all the favorites");
+            }
+          }); //end favorites.remove
+        }
+      }); //end find
     }
-  })
-};
+  }); //end event.remove
+}; //end delete
 
 exports.update = function(req, res) {
   var event = req.event;

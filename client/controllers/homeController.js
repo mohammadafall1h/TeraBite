@@ -6,12 +6,13 @@ homeApp.controller('homeController', function($scope, homeFactory){
   //check the user then bind it to the username display
   $scope.user=undefined;
   $scope.events;
+  $scope.favEvents;
   $scope.DetailEvent=undefined;
 
   homeFactory.getUser().then(function(response) {
     //do stuff on response
     if(response.data === "No User"){
-      //no user do nothing
+      //no user get events without checking against favorites
     }
     else {
       $scope.user = response.data;
@@ -21,6 +22,7 @@ homeApp.controller('homeController', function($scope, homeFactory){
       $("#logout").show();
       $("#login").hide();
       $("#signup").hide();
+      //get favorites then get all events
     }
   }, function(error) {
     //do stuff on error

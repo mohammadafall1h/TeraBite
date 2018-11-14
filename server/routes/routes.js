@@ -37,7 +37,7 @@ router.route('/event/:eventID')
 router.route('/favorites/:favID')
   .delete(favorites.delete)
 
-router.param('favByID', favorites.favByID);
-
+router.param('favID', favorites.favByID);
 router.param('eventID', events.eventByID);
+
 module.exports = router;
