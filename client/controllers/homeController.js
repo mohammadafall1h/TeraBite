@@ -9,6 +9,7 @@ homeApp.controller('homeController', function($scope, homeFactory){
   $scope.favEvents;
   $scope.DetailEvent=undefined;
 
+  //find out who the user is
   homeFactory.getUser().then(function(response) {
     //do stuff on response
     if(response.data === "No User"){
@@ -22,14 +23,15 @@ homeApp.controller('homeController', function($scope, homeFactory){
       $("#logout").show();
       $("#login").hide();
       $("#signup").hide();
-      //get favorites then get all events
+      //get favorites
+      $scope.getFavorites();
     }
   }, function(error) {
     //do stuff on error
     console.log('could not get user');
   });
 
-
+  //get a list of all the events
   homeFactory.getEvents().then(function(response) {
     //do stuff on response
     $scope.events = response.data;
@@ -37,6 +39,16 @@ homeApp.controller('homeController', function($scope, homeFactory){
     //do stuff on error
     console.log('No events to display.');
   });
+
+  //get all this users favorites
+  $scope.getFavorites = function(){
+    homeFactory.getFav().then(function(response){
+      $scope.favEvents = response.data;
+      $scope.toggleAllFavRows();
+    }, function(error){
+      window.alert(error.data);
+    });
+  }
 
   $scope.getDetails = function(event){
     $scope.DetailEvent= event;
@@ -50,12 +62,40 @@ homeApp.controller('homeController', function($scope, homeFactory){
       }
 
       homeFactory.createFav(favorite).then(function(response){
-        //favorite created
+        //toggle the favorite display for that row index
+        $scope.toggleRows(fav._id);
       }, function(error){
         window.alert(error.data);
       });
     }
+    else {
+      window.alert("Create an account to be able to favorite events!");
+    }
   } //end addFavorite
+
+  $scope.removeFavorite = function(fav){
+    if($scope.user){
+      homeFactory.deleteFav(fav._id).then(function(response){
+        //toggle the favorite display for that row index
+        $scope.toggleRows(fav._id);
+      }, function(error){
+        window.alert(error.data);
+      });
+    }
+  } //end removeFavorite
+
+  //loop through the favorites and toggle the favorited rows
+  $scope.toggleAllFavRows = function(){
+    $scope.favEvents.forEach(function(item){
+      $scope.toggleRows(item._id);
+    });
+  }
+
+  //toggle the rows between the favorite and unfavorite display
+  $scope.toggleRows = function(id){
+    $("#row" + id + "-fav").toggle();
+    $("#row" + id + "-unfav").toggle();
+  }
 
 }); //end homeController
 
@@ -78,6 +118,9 @@ homeApp.factory('homeFactory', function($http){
     },
     getFav: function() {
       return $http.get('http://localhost:8080/api/functions/favorites');
+    },
+    deleteFav: function(id) {
+      return $http.delete('http://localhost:8080/api/functions/favorites/' + id);
     }
   }; //end methods
 

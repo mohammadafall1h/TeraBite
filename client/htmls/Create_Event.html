@@ -32,12 +32,8 @@
           <td>{{event.name}}</td>
           <td>{{event.address}}</td>
           <td>{{event.date}}</td>
-          <td>
-            <button type="button" class="glyphicon glyphicon-remove" ng-click="deleteEvent(event)"></button>
-          </td>
-          <td>
-            <button type="button" class="glyphicon glyphicon-wrench" ng-click="setupUpdateEvent(event)"></button>
-          </td>
+          <td type="button" ng-click="deleteEvent(event)" class="removebtn"><span class="glyphicon glyphicon-remove"></span></td>
+          <td type="button" ng-click="setupUpdateEvent(event)" class="updatebtn"><span class="glyphicon glyphicon-wrench"></span></td>
         </tr>
       </tbody>
     </table>
@@ -110,6 +106,7 @@
           <th scope="col">Organizer</th>
           <th scope="col">Event Name</th>
           <th scope="col">Date</th>
+          <th scope="col">Time</th>
           <th scope="col">Unfavorite</th>
         </tr>
       </thead>
@@ -118,9 +115,8 @@
           <td>{{fav.owner}}</td>
           <td>{{fav.name}}</td>
           <td>{{fav.date}}</td>
-          <td>
-            <button type="button" class="glyphicon glyphicon-remove" ng-click="deleteFav(fav)"></button>
-          </td>
+          <td>{{fav.time}}</td>
+          <td type="button" ng-click="deleteFav(fav)"><span class="glyphicon glyphicon-remove"></span></td>
         </tr>
       </tbody>
     </table>

@@ -47,14 +47,19 @@
                   <th>Organization</th>
                   <th>Event Name</th>
                   <th>Date</th>
-                  <th>Favorites</th>
+                  <th>Favorite</th>
                 </tr>
-                  <!--__________Not Functional__________-->
-                  <tr ng-repeat="event in events | filter: searchText "  ng-click="getDetails(event)">
-                  <td>{{event.owner}}</td>
-                  <td>{{event.name}}</td>
-                  <td>{{event.date}}</td>
-                  <td type="button" class="glyphicon glyphicon-star-empty" ng-click="addFavorite(event)"></td>
+                <tr ng-repeat-start="event in events | filter: searchText " id="row{{event._id}}-fav">
+                  <td ng-click="getDetails(event)">{{event.owner}}</td>
+                  <td ng-click="getDetails(event)">{{event.name}}</td>
+                  <td ng-click="getDetails(event)">{{event.date}}</td>
+                  <td type="button" class="favbtn" ng-click="addFavorite(event)"><span class="glyphicon glyphicon-star"></span></td>
+                </tr>
+                <tr ng-repeat-end id="row{{event._id}}-unfav" style="display:none">
+                  <td ng-click="getDetails(event)">{{event.owner}}</td>
+                  <td ng-click="getDetails(event)">{{event.name}}</td>
+                  <td ng-click="getDetails(event)">{{event.date}}</td>
+                  <td type="button" class="unfavbtn" ng-click="removeFavorite(event)"><span class="glyphicon glyphicon-remove"></span></td>
                 </tr>
               </table>
             </div>

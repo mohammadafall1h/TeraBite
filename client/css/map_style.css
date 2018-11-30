@@ -30,12 +30,10 @@ font-size: 35px;
 /*__________Table Box__________*/
 table[name="eventTable"]{
 	  border: round;
-    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 100%;
     left: 50%;
     width: 100%;
-    height: 200px;
     overflow-y: auto ;
 }
 
@@ -62,11 +60,19 @@ h1{
     font-size: 30px;
 	font-family: sans-serif;
 }
+
+/* Favorite Button */
 td[type=button]{
   background: blue;
-  width: 100%;
+  width: 10%;
   text-align: center;
 }
+
+/* unFavorite Button */
+td[type=button].unfavbtn{
+  background: red;
+}
+
 /*__________?__________*/
 col{
 	border:  4px solid #00045B;
