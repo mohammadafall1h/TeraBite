@@ -39,7 +39,87 @@ exports.listByOrganizer = function(req, res){
     }
   });
 }
+//time parsing
+function parseTime(currTime){
+  var strSplit = currTime.split(':');
+  var hours = parseInt(strSplit[0]) * 60;
+  var mins  = parseInt(strSplit[1]);
+  var parseTime = (hours + mins) / 60;
+  return parseTime;
+}
+// autoDelete
+exports.autoDelete = function (req,res){
+  var date = new Date();
+  var currHour = date.getHours();
+  var currMin  = date.getMinutes();
+  var currTime = currHour + ":" + currMin;
+  var ctime = parseTime(currTime);
 
+  var cdate = date.getFullYear();
+  var cday  = date.getDate();
+  var cmonth= date.getMonth() + 1;
+
+
+  models.events.find({ }).exec(function(err, events) {
+    if (err){
+      res.status(400).send(err);
+    } else {
+      eList = [];
+      events.forEach(function(item){
+        var eTime = parseTime(item.time);
+        var edatepresplit = (item.date);
+        var edatepostsplit = edatepresplit.split('/');
+        var eYear = parseInt(edatepostsplit[2]);
+        var eDay = parseInt(edatepostsplit[1]);
+        var eMonth = parseInt(edatepostsplit[0]);
+        if (((ctime - eTime) >= .50 && cdate >= eYear && cmonth >= eMonth && cday >= eDay) ||
+            ( cdate >= eYear && cmonth >= eMonth && cday > eDay) ||
+            ( cdate >= eYear && cmonth > eMonth ) ||
+            ( cdate > eYear )) {
+          eList.push(item);
+          autoDeleteHelper(item);
+        }
+      });
+      res.json(eList);
+    }
+  });
+}
+
+function autoDeleteHelper(currEvent){
+  // var event = req.event;
+  var eventID = currEvent._id;
+  currEvent.remove(function(err){
+    if(err){
+      console.log(err);
+      // res.status(400).send(err);
+    }
+    else{
+      //find all the favorites of this event and delete those too
+      models.favorites.find({eventID : eventID}).exec(function(err, favs) {
+        if(err){
+          console.log(err);
+          // res.status(400).send(err);
+        } else {
+          //loop through all favs and delete them
+          var usersDelete = [];
+          favs.forEach(function(item){
+            usersDelete.push(item._id);
+          });
+          console.log("deleting: " + favs);
+          models.favorites.remove({'_id':{'$in': usersDelete}}).exec(function(err){
+            if(err){
+              console.log(err);
+              res.status(400).send(err);
+            } else {
+              // res.send("deleted all the favorites");
+              console.log("deleted all events that started at least 30 minutes ago");
+            }
+          }); //end favorites.remove
+        }
+      }); //end find
+    }
+  }); //end event.remove
+}
 // delete an event
 exports.delete = function(req, res) {
 
