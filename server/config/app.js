@@ -4,6 +4,7 @@ var config = require('./config'),
 
     //sets dynamic ports for heiroku but defaults to localhost:8080
     let port = process.env.PORT;
+    // port = process.env.PORT;
     if(port == null || port == "") {
       port = 8080;
     }
