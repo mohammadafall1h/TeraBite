@@ -73,32 +73,25 @@
     </div>
 
     <!--Map-->
-    <h1>Map View</h1>
-
-  <div id="map_canvas" ng-controller="homeController"  >
-      <ui-gmap-google-map center="map.center" zoom="map.zoom">
-
-      <ui-gmap-markers models="events"  idkey="'_id'" coords= "'coordinates'" icon="'icon'" >
-
-          <ui-gmap-windows>
-                          <div ng-non-bindable>
-                            <h4>{{DetailEvent.name}}</h4>
-                              <label>Date:</label><p>{{DetailEvent.date}}</p>
-                              <label>Time:</label><p>{{DetailEvent.time}}</p>
-                          </div>
-
-              </ui-gmap-windows>
-
-        </ui-gmap-markers>
-
-      </ui-gmap-google-map>
-  </div>
-
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhc61sKIC1JFkUWukNgro8oytC-r8lgs&callback=initMap">
-    </script>
+ <h1>Map View</h1>
+    <!--Map-->
+    <div ng-app="mapsApp" ng-controller="MapCtrl">
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
+</div>
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.1/lodash.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhc61sKIC1JFkUWukNgro8oytC-r8lgs&callback=initMap"
+    async defer></script>
+    
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 <script src="../controllers/homeController.js"></script>
+    <script src="../controllers/map.js"></script>
 </body>
 </html>

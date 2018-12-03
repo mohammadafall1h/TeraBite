@@ -56,14 +56,6 @@ homeApp.controller('homeController', function($scope, homeFactory){
     });
   }
   $scope.getEvents();
-
-  $scope.map = {
-    center:{
-      latitude: 29.0,
-      longitude: -82.0
-    },
-    zoom: 8
-  }
   
   //get all this users favorites
   $scope.getFavorites = function(){
