@@ -75,7 +75,7 @@
     <!--Map-->
  <h1>Map View</h1>
     <!--Map-->
-    <div ng-app="mapsApp" ng-controller="MapCtrl">
+    <div ng-app="homeApplication" ng-controller="MapCtrl">
     <div id="map"></div>
     <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
          <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
