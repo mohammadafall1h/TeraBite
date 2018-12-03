@@ -40,6 +40,14 @@ homeApp.controller('homeController', function($scope, homeFactory){
     console.log('No events to display.');
   });
 
+  $scope.map = {
+    center:{
+      latitude: 29.0,
+      longitude: -82.0
+    },
+    zoom: 8
+  }
+  
   //get all this users favorites
   $scope.getFavorites = function(){
     homeFactory.getFav().then(function(response){
@@ -96,7 +104,6 @@ homeApp.controller('homeController', function($scope, homeFactory){
     $("#row" + id + "-fav").toggle();
     $("#row" + id + "-unfav").toggle();
   }
-
 }); //end homeController
 
 /* creates the factory that will be used to handle http requests */

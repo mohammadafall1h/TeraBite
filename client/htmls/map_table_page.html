@@ -76,12 +76,30 @@
     </div>
 
     <!--Map-->
-    <div class="col-md-6">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3467.5299317624394!2d-82.34386882054024!3d29.64639307738292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1539643190475" width="560" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
+    <h1>Map View</h1>
+
+  <div id="map_canvas" ng-controller="homeController"  >
+      <ui-gmap-google-map center="map.center" zoom="map.zoom">
+
+      <ui-gmap-markers models="events"  idkey="'_id'" coords= "'coordinates'" icon="'icon'" >
+
+          <ui-gmap-windows>
+                          <div ng-non-bindable>
+                            <h4>{{DetailEvent.name}}</h4>
+                              <label>Date:</label><p>{{DetailEvent.date}}</p>
+                              <label>Time:</label><p>{{DetailEvent.time}}</p>
+                          </div>
+
+              </ui-gmap-windows>
+
+        </ui-gmap-markers>
+
+      </ui-gmap-google-map>
   </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhc61sKIC1JFkUWukNgro8oytC-r8lgs&callback=initMap">
+    </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 <script src="../controllers/homeController.js"></script>
