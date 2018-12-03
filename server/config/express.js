@@ -33,6 +33,10 @@ module.exports.init = function() {
     res.sendFile(path.join(__dirname + '../../../client/htmls/map_table_page.html'));
   });
 
+  app.get('/favicon.ico', function(req,res){
+    res.sendFile(path.join(__dirname + '../../../client/images/terabiteLogo.png'));
+  });
+
   app.get('/signin', function(req, res){
     res.sendFile(path.join(__dirname + '../../../client/htmls/Login.html'));
   });

@@ -29,7 +29,7 @@
             <div class="col-md-12">
               <!--__________Search Box__________-->
               <div class="input-group" id="searchBar">
-                 <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
                 <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
               </div>
               <div class="tableWrapper">
@@ -40,34 +40,31 @@
                   <th>Organization</th>
                   <th>Event Name</th>
                   <th>Date</th>
+                  <th>Time</th>
                   <th>Favorite</th>
                 </tr>
-                <tr ng-repeat-start="event in events | filter: searchText " id="row{{event._id}}-fav">
-                  <td ng-click="getDetails(event)">{{event.owner}}</td>
-                  <td ng-click="getDetails(event)">{{event.name}}</td>
-                  <td ng-click="getDetails(event)">{{event.date}}</td>
+                <tr ng-repeat-start="event in events" class="row{{event._id}}-fav" ng-hide="!filterFound(event)">
+                  <td ng-click="getDetails(event._id)">{{event.owner}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.name}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.date}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.time}}</td>
                   <td type="button" class="favbtn" ng-click="addFavorite(event)"><span class="glyphicon glyphicon-star"></span></td>
                 </tr>
-                <tr ng-repeat-end id="row{{event._id}}-unfav" style="display:none">
-                  <td ng-click="getDetails(event)">{{event.owner}}</td>
-                  <td ng-click="getDetails(event)">{{event.name}}</td>
-                  <td ng-click="getDetails(event)">{{event.date}}</td>
+                <!-- Unfavorite Row -->
+                <tr ng-repeat-start="dum in dummy" class="row{{event._id}}-unfav" ng-hide="!filterFound(event)" style="display:none">
+                  <td ng-click="getDetails(event._id)">{{event.owner}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.name}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.date}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.time}}</td>
                   <td type="button" class="unfavbtn" ng-click="removeFavorite(event)"><span class="glyphicon glyphicon-remove"></span></td>
                 </tr>
+                <!-- Deatiled Info Rows -->
+                <tr ng-repeat-end ng-repeat="(key, value) in event" class="detailedInfo row{{event._id}}-details" ng-if="shouldRowExist(key)" ng-hide="!filterFound(event)" style="display:none">
+                  <td colspan="1" class="detailedInfo">{{key.charAt(0).toUpperCase() + key.slice(1)}}</td>
+                  <td colspan="4" class="detailedInfo">{{value}}</td>
+                </tr>
+                <tr ng-repeat-end ng-hide="true"></tr>
               </table>
-            </div>
-            </div>
-            <!--Nested rows-->
-            <div class="col-md-8">
-              <!--__________Jumbotron__________-->
-              <div class="jumbotron">
-                <h3>Detailed Information</h3>
-                <!--__________Not Functional__________-->
-                <h4><strong>Organization:</strong> {{DetailEvent.owner}}</h4>
-                <h4><strong>Event:</strong> {{DetailEvent.name}}</h4>
-                <h4><strong>Date:</strong> {{DetailEvent.date}}</h4>
-                <h4><strong>Time:</strong> {{DetailEvent.time}}</h4>
-                <h4><strong>Food:</strong> {{DetailEvent.food}}</h4>
               </div>
             </div>
           </div>

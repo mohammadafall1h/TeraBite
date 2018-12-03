@@ -3,17 +3,32 @@ var homeApp = angular.module('homeApplication', []);
 
 /* creates the controller for login.html (ng-controller) */
 homeApp.controller('homeController', function($scope, homeFactory){
-  //check the user then bind it to the username display
-  $scope.user=undefined;
+
+  $scope.searchText = "";
+  $scope.user = undefined;
+  $scope.favEvents = undefined;
   $scope.events;
-  $scope.favEvents;
-  $scope.DetailEvent=undefined;
+
+  //dummy object to loop once
+  $scope.dummy = [{pointless: 42}]
+
+  //returns whether the search filter is found in one of the event properties
+  $scope.filterFound = function(event){
+    if(event.name.indexOf($scope.searchText) == -1 && event.address.indexOf($scope.searchText) == -1 && event.room.indexOf($scope.searchText) == -1 &&
+       event.owner.indexOf($scope.searchText) == -1 && event.date.indexOf($scope.searchText) == -1 && event.time.indexOf($scope.searchText) == -1 &&
+       event.food.indexOf($scope.searchText) == -1 && event.description.indexOf($scope.searchText) == -1){
+         return false;
+    }
+    else {
+      return true;
+    }
+  }
 
   //find out who the user is
   homeFactory.getUser().then(function(response) {
     //do stuff on response
     if(response.data === "No User"){
-      //no user get events without checking against favorites
+      //no user get events without getting favorites
     }
     else {
       $scope.user = response.data;
@@ -23,7 +38,6 @@ homeApp.controller('homeController', function($scope, homeFactory){
       $("#logout").show();
       $("#login").hide();
       $("#signup").hide();
-      //get favorites
       $scope.getFavorites();
     }
   }, function(error) {
@@ -32,13 +46,16 @@ homeApp.controller('homeController', function($scope, homeFactory){
   });
 
   //get a list of all the events
-  homeFactory.getEvents().then(function(response) {
-    //do stuff on response
-    $scope.events = response.data;
-  }, function(error) {
-    //do stuff on error
-    console.log('No events to display.');
-  });
+  $scope.getEvents = function(){
+    homeFactory.getEvents().then(function(response) {
+      //do stuff on response
+      $scope.events = response.data;
+    }, function(error) {
+      //do stuff on error
+      console.log('No events to display.');
+    });
+  }
+  $scope.getEvents();
 
   $scope.map = {
     center:{
@@ -58,8 +75,19 @@ homeApp.controller('homeController', function($scope, homeFactory){
     });
   }
 
-  $scope.getDetails = function(event){
-    $scope.DetailEvent= event;
+
+  //destroys detailed information rows that repeat data
+  $scope.shouldRowExist = function(key){
+    if(key == "address" || key == "room" || key == "food" || key == "description"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  //toggle detailed information rows
+  $scope.getDetails = function(id){
+    $(".detailedInfo.row" + id + "-details").toggle();
   };
 
   $scope.addFavorite = function(fav){
@@ -92,17 +120,21 @@ homeApp.controller('homeController', function($scope, homeFactory){
     }
   } //end removeFavorite
 
-  //loop through the favorites and toggle the favorited rows
+
+  //loop through the events and favorites and toggle the favorited rows
   $scope.toggleAllFavRows = function(){
-    $scope.favEvents.forEach(function(item){
-      $scope.toggleRows(item._id);
-    });
-  }
+    if($scope.favEvents){
+      $scope.favEvents.forEach(function(item){
+        $(".row" + item._id + "-fav").toggle();
+        $(".row" + item._id + "-unfav").toggle();
+      });
+    }
+  } //end toggleAllFavRows
 
   //toggle the rows between the favorite and unfavorite display
   $scope.toggleRows = function(id){
-    $("#row" + id + "-fav").toggle();
-    $("#row" + id + "-unfav").toggle();
+    $(".row" + id + "-fav").toggle();
+    $(".row" + id + "-unfav").toggle();
   }
 }); //end homeController
 
