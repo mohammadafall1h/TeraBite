@@ -131,10 +131,12 @@ homeApp.controller('homeController', function($scope, homeFactory){
 })
 .controller('MapCtrl', function ($scope, homeFactory) {
 
-    $scope.getEvents = function(){
+  $scope.events;
+  $scope.getEvents = function(){
     homeFactory.getEvents().then(function(response) {
       //do stuff on response
       $scope.events = response.data;
+      $scope.getPins();
     }, function(error) {
       //do stuff on error
       console.log('No events to display.');
@@ -159,7 +161,7 @@ homeApp.controller('homeController', function($scope, homeFactory){
         var marker = new google.maps.Marker({
             map: $scope.map,
             position: new google.maps.LatLng(info.geometry.location.lat(), info.geometry.location.lng())
-            
+
         });
         marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
 
@@ -171,16 +173,20 @@ homeApp.controller('homeController', function($scope, homeFactory){
         $scope.markers.push(marker);
 
     }
-    
-    for (i = 0; i < $scope.events.length; i++){
 
-      geocoder = new google.maps.Geocoder(); 
-      geocoder.geocode({'address' : $scope.events.address}, function (result, status) {
 
-      if (status === google.maps.GeocoderStatus.OK) {
+  $scope.getPins = function(){
+    $scope.events.forEach(function(event){
 
+      geocoder = new google.maps.Geocoder();
+      geocoder.geocode({'address' : event.address}, function (result, status) {
+
+      if (status === google.maps.GeocoderStatus.OK)
         createMarker(result[0]);
-    }
+
+    });
+  });
+}
 
     $scope.openInfoWindow = function(e, selectedMarker){
         e.preventDefault();
