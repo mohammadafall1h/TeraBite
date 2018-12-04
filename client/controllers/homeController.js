@@ -79,7 +79,7 @@ homeApp.controller('homeController', function($scope, homeFactory){
   }
   //toggle detailed information rows
   $scope.getDetails = function(id){
-    $(".detailedInfo.row" + id + "-details").toggle();
+    $(".detailedInfo.row" + id + "-details").toggle(300, "linear");
   };
 
   $scope.addFavorite = function(fav){

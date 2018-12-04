@@ -68,7 +68,7 @@ createApp.controller('createEventController', function($scope, createEventFactor
   }
   //toggle detailed information rows
   $scope.getDetails = function(id){
-    $(".detailedInfo.row" + id + "-details").toggle();
+    $(".detailedInfo.row" + id + "-details").toggle(300, "linear");
   };
 
   //destroys detailed information rows that repeat data
@@ -83,7 +83,7 @@ createApp.controller('createEventController', function($scope, createEventFactor
   //toggle detailed information rows
   $scope.getDetails2 = function(id){
     $scope.owner.username = "adam";
-    $(".detailedInfo2.row" + id + "-details2").toggle();
+    $(".detailedInfo2.row" + id + "-details2").toggle(300, "linear");
   };
 
   //be able to open the create event form
