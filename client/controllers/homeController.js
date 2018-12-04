@@ -145,7 +145,7 @@ homeApp.controller('homeController', function($scope, homeFactory){
   $scope.getEvents();
 
     var mapOptions = {
-        zoom: 8,
+        zoom: 14,
         center: new google.maps.LatLng(29.643633, -82.354927),
         mapTypeId: google.maps.MapTypeId.TERRAIN
     }
@@ -156,14 +156,15 @@ homeApp.controller('homeController', function($scope, homeFactory){
 
     var infoWindow = new google.maps.InfoWindow();
 
-    var createMarker = function (info){
+    var createMarker = function (info, name, date, time, food){
 
         var marker = new google.maps.Marker({
             map: $scope.map,
-            position: new google.maps.LatLng(info.geometry.location.lat(), info.geometry.location.lng())
+            position: new google.maps.LatLng(info.geometry.location.lat(), info.geometry.location.lng()),
+            title: name
 
         });
-        marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+        marker.content = '<div class="infoWindowContent">' + date + "  " +time + "  "+ food+'</div>';
 
         google.maps.event.addListener(marker, 'click', function(){
             infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
@@ -181,8 +182,9 @@ homeApp.controller('homeController', function($scope, homeFactory){
       geocoder = new google.maps.Geocoder();
       geocoder.geocode({'address' : event.address}, function (result, status) {
 
-      if (status === google.maps.GeocoderStatus.OK)
-        createMarker(result[0]);
+      if (status === google.maps.GeocoderStatus.OK){
+        createMarker(result[0],event.name, event.date, event.time, event.food);
+      }
 
     });
   });
