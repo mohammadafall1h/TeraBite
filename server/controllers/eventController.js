@@ -45,13 +45,14 @@ function parseTime(currTime){
   var hours = parseInt(strSplit[0]) * 60;
   var mins  = parseInt(strSplit[1]);
   var parseTime = (hours + mins) / 60;
+  console.log("time calculated from "+currTime+":"+parseTime);
   return parseTime;
 }
 // autoDelete
 exports.autoDeleteTimer = function(){
   loop();
 }
-var loopSeconds = 60;
+var loopSeconds = 30;
 function loop()
 {
   autoDelete();
@@ -82,10 +83,14 @@ function autoDelete(){
         var eYear = parseInt(edatepostsplit[2]);
         var eDay = parseInt(edatepostsplit[1]);
         var eMonth = parseInt(edatepostsplit[0]);
-        if (((ctime - eTime) >= .50 && cdate >= eYear && cmonth >= eMonth && cday >= eDay) ||
+        // console.log(ctime+"-"+eTime+":"+(eTime-ctime));
+        var timeComp = (ctime - eTime);
+        console.log("Current Time minus Event time (after they are parsed):"+timeComp);
+        if (((timeComp > .50 && timeComp < .60) && cdate >= eYear && cmonth >= eMonth && cday >= eDay) ||
             ( cdate >= eYear && cmonth >= eMonth && cday > eDay) ||
             ( cdate >= eYear && cmonth > eMonth ) ||
             ( cdate > eYear )) {
+          // console.log("event is past time, will be deleted: "+(eTime-ctime));
           eList.push(item);
           autoDeleteHelper(item);
         }
