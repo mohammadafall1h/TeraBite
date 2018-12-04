@@ -23,21 +23,24 @@
           <th scope="col">Name</th>
           <th scope="col">Address</th>
           <th scope="col">Date</th>
+          <th scope="col">Time</th>
           <th scope="col">Delete</th>
           <th scope="col">Update</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="event in events">
-          <td>{{event.name}}</td>
-          <td>{{event.address}}</td>
-          <td>{{event.date}}</td>
-          <td>
-            <button type="button" class="glyphicon glyphicon-remove" ng-click="deleteEvent(event)"></button>
-          </td>
-          <td>
-            <button type="button" class="glyphicon glyphicon-wrench" ng-click="setupUpdateEvent(event)"></button>
-          </td>
+        <tr ng-repeat-start="event in events">
+          <td ng-click="getDetails(event._id)">{{event.name}}</td>
+          <td ng-click="getDetails(event._id)">{{event.address}}</td>
+          <td ng-click="getDetails(event._id)">{{event.date}}</td>
+          <td ng-click="getDetails(event._id)">{{event.time}}</td>
+          <td type="button" ng-click="deleteEvent(event)" class="removebtn"><span class="glyphicon glyphicon-remove"></span></td>
+          <td type="button" ng-click="setupUpdateEvent(event)" class="updatebtn"><span class="glyphicon glyphicon-wrench"></span></td>
+        </tr>
+        <!-- Deatiled Info Rows -->
+        <tr ng-repeat-end ng-repeat="(key, value) in event" class="detailedInfo row{{event._id}}-details" ng-if="shouldRowExist(key)" style="display:none">
+          <td colspan="1" class="detailedInfo">{{key.charAt(0).toUpperCase() + key.slice(1)}}</td>
+          <td colspan="5" class="detailedInfo">{{value}}</td>
         </tr>
       </tbody>
     </table>
@@ -110,17 +113,22 @@
           <th scope="col">Organizer</th>
           <th scope="col">Event Name</th>
           <th scope="col">Date</th>
+          <th scope="col">Time</th>
           <th scope="col">Unfavorite</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="fav in favs">
-          <td>{{fav.owner}}</td>
-          <td>{{fav.name}}</td>
-          <td>{{fav.date}}</td>
-          <td>
-            <button type="button" class="glyphicon glyphicon-remove" ng-click="deleteFav(fav)"></button>
-          </td>
+        <tr ng-repeat-start="fav in favs">
+          <td ng-click="getDetails2(fav._id)">{{fav.owner}}</td>
+          <td ng-click="getDetails2(fav._id)">{{fav.name}}</td>
+          <td ng-click="getDetails2(fav._id)">{{fav.date}}</td>
+          <td ng-click="getDetails2(fav._id)">{{fav.time}}</td>
+          <td type="button" ng-click="deleteFav(fav)"><span class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+        <!-- Deatailed Info Rows -->
+        <tr ng-repeat-end ng-repeat="(key, value) in fav" class="detailedInfo2 row{{fav._id}}-details2" ng-if="shouldRowExist2(key)" style="display:none">
+          <td colspan="1" class="detailedInfo2">{{key.charAt(0).toUpperCase() + key.slice(1)}}</td>
+          <td colspan="4" class="detailedInfo2">{{value}}</td>
         </tr>
       </tbody>
     </table>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UF Food App Map</title>
+  <title>Terabite</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <style type="text/css">
   @import url("../css/map_style.css");
@@ -9,13 +9,6 @@
 </head>
 <body ng-app="homeApplication">
 <div class="container" ng-controller="homeController">
-  <div class="row">
-    <ol>
-      <li>
-        <h1 class="text-center" id="title"><strong>TeraBite</strong></h1>
-      </li>
-    </ol>
-  </div>
   <div class="row">
     <!--__________HomeBegin__________-->&nbsp;
     <div align="left" class="container">
@@ -31,12 +24,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <!--Nested row-->
-          <div class="row">
+
             <div class="col-md-12">
               <!--__________Search Box__________-->
               <div class="input-group" id="searchBar">
-                 <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
                 <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
               </div>
               <div class="tableWrapper">
@@ -47,43 +39,48 @@
                   <th>Organization</th>
                   <th>Event Name</th>
                   <th>Date</th>
-                  <th>Favorites</th>
+                  <th>Time</th>
+                  <th>Favorite</th>
                 </tr>
-                  <!--__________Not Functional__________-->
-                  <tr ng-repeat="event in events | filter: searchText "  ng-click="getDetails(event)">
-                  <td>{{event.owner}}</td>
-                  <td>{{event.name}}</td>
-                  <td>{{event.date}}</td>
-                  <td type="button" class="glyphicon glyphicon-star-empty" ng-click="addFavorite(event)"></td>
+                <tr ng-repeat-start="event in events" class="row{{event._id}}-fav" ng-hide="!filterFound(event)">
+                  <td ng-click="getDetails(event._id)">{{event.owner}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.name}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.date}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.time}}</td>
+                  <td type="button" class="favbtn" ng-click="addFavorite(event)"><span class="glyphicon glyphicon-star"></span></td>
                 </tr>
+                <!-- Unfavorite Row -->
+                <tr ng-repeat-start="dum in dummy" class="row{{event._id}}-unfav" ng-hide="!filterFound(event)" style="display:none">
+                  <td ng-click="getDetails(event._id)">{{event.owner}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.name}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.date}}</td>
+                  <td ng-click="getDetails(event._id)">{{event.time}}</td>
+                  <td type="button" class="unfavbtn" ng-click="removeFavorite(event)"><span class="glyphicon glyphicon-remove"></span></td>
+                </tr>
+                <!-- Deatiled Info Rows -->
+                <tr ng-repeat-end ng-repeat="(key, value) in event" class="detailedInfo row{{event._id}}-details" ng-if="shouldRowExist(key)" ng-hide="!filterFound(event)" style="display:none">
+                  <td colspan="1" class="detailedInfo">{{key.charAt(0).toUpperCase() + key.slice(1)}}</td>
+                  <td colspan="4" class="detailedInfo">{{value}}</td>
+                </tr>
+                <tr ng-repeat-end ng-hide="true"></tr>
               </table>
-            </div>
-            </div>
-            <!--Nested rows-->
-            <div class="col-md-8">
-              <!--__________Jumbotron__________-->
-              <div class="jumbotron">
-                <h3>Detailed Information</h3>
-                <!--__________Not Functional__________-->
-                <h4><strong>Organization:</strong> {{DetailEvent.owner}}</h4>
-                <h4><strong>Event:</strong> {{DetailEvent.name}}</h4>
-                <h4><strong>Date:</strong> {{DetailEvent.date}}</h4>
-                <h4><strong>Time:</strong> {{DetailEvent.time}}</h4>
-                <h4><strong>Food:</strong> {{DetailEvent.food}}</h4>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
     <!--Map-->
     <div class="col-md-6">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3467.5299317624394!2d-82.34386882054024!3d29.64639307738292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1539643190475" width="560" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <div ng-controller="MapCtrl">
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+         
     </div>
-  </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.1/lodash.js" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhc61sKIC1JFkUWukNgro8oytC-r8lgs&callback=initMap"async defer></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 <script src="../controllers/homeController.js"></script>

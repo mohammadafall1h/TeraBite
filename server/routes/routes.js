@@ -25,6 +25,9 @@ router.route('/event')
 router.route('/event/org')
   .get(events.listByOrganizer);
 
+// router.router('autoDelete')
+//   .get(events.autoDelete);
+
 router.route('/favorites')
   .get(favorites.listUserFavs)
   .post(favorites.create);

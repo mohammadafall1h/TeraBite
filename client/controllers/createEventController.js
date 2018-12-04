@@ -57,6 +57,35 @@ createApp.controller('createEventController', function($scope, createEventFactor
     });
   }
 
+  //destroys detailed information rows that repeat data
+  $scope.shouldRowExist = function(key){
+    if(key == "room" || key == "food" || key == "description"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  //toggle detailed information rows
+  $scope.getDetails = function(id){
+    $(".detailedInfo.row" + id + "-details").toggle(300, "linear");
+  };
+
+  //destroys detailed information rows that repeat data
+  $scope.shouldRowExist2 = function(key){
+    if(key == "address" || key == "room" || key == "food" || key == "description"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  //toggle detailed information rows
+  $scope.getDetails2 = function(id){
+    $scope.owner.username = "adam";
+    $(".detailedInfo2.row" + id + "-details2").toggle(300, "linear");
+  };
+
   //be able to open the create event form
   $scope.toggleTable = function(){
     $scope.name= "";
@@ -315,6 +344,7 @@ createApp.controller('createEventController', function($scope, createEventFactor
         createEventFactory.updateEvent($scope.updateID, $scope.evntinfo).then(function(response) {
           //on response get the new events list
           $scope.getEvents();
+          $scope.getFavs();
           $scope.toggleTable();
 
           //reset the updating variables
@@ -332,6 +362,7 @@ createApp.controller('createEventController', function($scope, createEventFactor
     createEventFactory.deleteEvent(eventID).then(function(response){
       //event successfully deleted get new events
       $scope.getEvents();
+      $scope.getFavs();
     }, function(error) {
       window.alert(error.data);
     });
