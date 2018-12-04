@@ -48,7 +48,16 @@ function parseTime(currTime){
   return parseTime;
 }
 // autoDelete
-exports.autoDelete = function (req,res){
+exports.autoDeleteTimer = function(){
+  loop();
+}
+var loopSeconds = 60;
+function loop()
+{
+  autoDelete();
+  setTimeout(loop, loopSeconds * 1000);
+}
+function autoDelete(){
   var date = new Date();
   var currHour = date.getHours();
   var currMin  = date.getMinutes();
@@ -62,7 +71,8 @@ exports.autoDelete = function (req,res){
 
   models.events.find({ }).exec(function(err, events) {
     if (err){
-      res.status(400).send(err);
+      // res.status(400).send(err);
+      consoloe.log("An error has occur: "+err);
     } else {
       eList = [];
       events.forEach(function(item){
@@ -80,7 +90,8 @@ exports.autoDelete = function (req,res){
           autoDeleteHelper(item);
         }
       });
-      res.json(eList);
+      // res.json(eList);
+      console.log(eList);
     }
   });
 }
