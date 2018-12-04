@@ -129,11 +129,22 @@ homeApp.controller('homeController', function($scope, homeFactory){
     $(".row" + id + "-unfav").toggle();
   }
 })
-.controller('MapCtrl', function ($scope) {
+.controller('MapCtrl', function ($scope, homeFactory) {
+
+    $scope.getEvents = function(){
+    homeFactory.getEvents().then(function(response) {
+      //do stuff on response
+      $scope.events = response.data;
+    }, function(error) {
+      //do stuff on error
+      console.log('No events to display.');
+    });
+  }
+  $scope.getEvents();
 
     var mapOptions = {
-        zoom: 4,
-        center: new google.maps.LatLng(40.0000, -98.0000),
+        zoom: 8,
+        center: new google.maps.LatLng(29.643633, -82.354927),
         mapTypeId: google.maps.MapTypeId.TERRAIN
     }
 
@@ -147,8 +158,8 @@ homeApp.controller('homeController', function($scope, homeFactory){
 
         var marker = new google.maps.Marker({
             map: $scope.map,
-            position: new google.maps.LatLng(info.lat, info.long),
-            title: info.city
+            position: new google.maps.LatLng(info.geometry.location.lat(), info.geometry.location.lng())
+            
         });
         marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
 
@@ -160,9 +171,15 @@ homeApp.controller('homeController', function($scope, homeFactory){
         $scope.markers.push(marker);
 
     }
+    
+    for (i = 0; i < $scope.events.length; i++){
 
-    for (i = 0; i < cities.length; i++){
-        createMarker(cities[i]);
+      geocoder = new google.maps.Geocoder(); 
+      geocoder.geocode({'address' : $scope.events.address}, function (result, status) {
+
+      if (status === google.maps.GeocoderStatus.OK) {
+
+        createMarker(result[0]);
     }
 
     $scope.openInfoWindow = function(e, selectedMarker){
