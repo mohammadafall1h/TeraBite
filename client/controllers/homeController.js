@@ -190,11 +190,6 @@ homeApp.controller('homeController', function($scope, homeFactory){
   });
 }
 
-    $scope.openInfoWindow = function(e, selectedMarker){
-        e.preventDefault();
-        google.maps.event.trigger(selectedMarker, 'click');
-    }
-
 }); //end homeController
 
 /* creates the factory that will be used to handle http requests */
