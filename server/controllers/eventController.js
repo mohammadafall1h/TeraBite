@@ -60,7 +60,7 @@ function loop()
 }
 function autoDelete(){
   var date = new Date();
-  var currHour = date.getHours();
+  var currHour = date.getHours() + 3;
   var currMin  = date.getMinutes();
   var currTime = currHour + ":" + currMin;
   var ctime = parseTime(currTime);
