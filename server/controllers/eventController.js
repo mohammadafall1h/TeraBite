@@ -73,7 +73,7 @@ function autoDelete(){
   models.events.find({ }).exec(function(err, events) {
     if (err){
       // res.status(400).send(err);
-      consoloe.log("An error has occur: "+err);
+      console.log("An error has occur: "+err);
     } else {
       eList = [];
       events.forEach(function(item){
