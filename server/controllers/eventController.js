@@ -48,7 +48,6 @@ function parseTime(currTime){
   return parseTime;
 }
 // autoDelete
-// autoDelete
 exports.autoDeleteTimer = function(){
   loop();
 }
@@ -60,42 +59,63 @@ function loop()
 }
 function autoDelete(){
   var date = new Date();
-  var currHour = date.getHours() + 3;
+  var currHour = date.getHours();
   var currMin  = date.getMinutes();
   var currTime = currHour + ":" + currMin;
-  var ctime = parseTime(currTime);
-
-  var cdate = date.getFullYear();
-  var cday  = date.getDate();
-  var cmonth= date.getMonth() + 1;
+  var cTime = parseTime(currTime);
+  var cYear = date.getFullYear();
+  var cDay  = date.getDate();
+  var cMonth= date.getMonth() + 1;
+  //log all current date/time information
+  console.log("Current Time Information:\ncTime: " + cTime + "\ncyear: " + cYear + "\ncDay: " + cDay + "\ncMonth: " + cMonth);
 
 
   models.events.find({ }).exec(function(err, events) {
     if (err){
       // res.status(400).send(err);
-      consoloe.log("An error has occur: "+err);
+      console.log("An error has occur: "+err);
     } else {
       eList = [];
       events.forEach(function(item){
-        var eTime = parseTime(item.time);
-        var edatepresplit = (item.date);
-        var edatepostsplit = edatepresplit.split('/');
+        //get current event time
+        var eTime = parseTime(item.time)+1;
+        var edatepostsplit = item.date.split('/');
         var eYear = parseInt(edatepostsplit[2]);
         var eDay = parseInt(edatepostsplit[1]);
         var eMonth = parseInt(edatepostsplit[0]);
-        // console.log(ctime+"-"+eTime+":"+(eTime-ctime));
-        var timeComp = (ctime - eTime);
-        console.log("Current Time minus Event time (after they are parsed):"+timeComp);
-        if (((timeComp > .50 && timeComp < .60) && cdate >= eYear && cmonth >= eMonth && cday >= eDay) ||
-            ( cdate >= eYear && cmonth >= eMonth && cday > eDay) ||
-            ( cdate >= eYear && cmonth > eMonth ) ||
-            ( cdate > eYear )) {
-          // console.log("event is past time, will be deleted: "+(eTime-ctime));
+        //check if shifting event forward in time changes day
+        if(eTime > 24){
+          eTime -= 24; //cut the time down 24 hours
+          eDay += 1; //move the day forward one
+        }
+        //check if changing the day should change the month
+        if(eMonth == 1 || eMonth == 3 || eMonth == 5 || eMonth == 7 || eMonth == 8 || eMonth == 10 || eMonth == 12 && eDay > 31){
+          eDay -= 31;
+          eMonth += 1;
+        }
+        else if(eMonth == 4 || eMonth == 6 || eMonth == 9 || eMonth == 11 && eDay > 30){
+          eDay -= 30;
+          eMonth += 1;
+        }
+        else if(eMonth == 2 && eDay > 28){
+          eDay -= 28;
+          eMonth += 1;
+        }
+        //check if changing the month should change the year
+        if(eMonth > 12){
+          eMonth -= 12;
+          eYear += 1;
+        }
+
+        var timeComp = (cTime - eTime);
+        if (cYear > eYear ||
+           (cYear == eYear && cMonth > eMonth) ||
+           (cYear == eYear && cMonth == eMonth && cDay > eDay) ||
+           (cYear == eYear && cMonth == eMonth && cDay == eDay && timeComp > 0)) {
           eList.push(item);
           autoDeleteHelper(item);
         }
       });
-      // res.json(eList);
       console.log(eList);
     }
   });
@@ -125,10 +145,10 @@ function autoDeleteHelper(currEvent){
           models.favorites.remove({'_id':{'$in': usersDelete}}).exec(function(err){
             if(err){
               console.log(err);
-              res.status(400).send(err);
+              //es.status(400).send(err);
             } else {
               // res.send("deleted all the favorites");
-              console.log("deleted all events that started at least 30 minutes ago");
+              console.log("deleted all events that started at least 60 minutes ago");
             }
           }); //end favorites.remove
         }
@@ -136,6 +156,7 @@ function autoDeleteHelper(currEvent){
     }
   }); //end event.remove
 }
+
 // delete an event
 exports.delete = function(req, res) {
 
