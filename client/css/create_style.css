@@ -1,0 +1,134 @@
+html, body {
+  padding:0;
+  margin:0;
+  font-family: sans-serif;
+	background: url(../images/Burger.jpg);
+    background-size: 100% 100%;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+h1 {
+    margin: 0;
+    padding: 0 0 5px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.splitleft-box {
+    width: 320px;
+    height: 450px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 33%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 50px 20px;
+}
+
+.splitright-box {
+    width: 320px;
+    height: 450px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 66%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 50px 20px;
+}
+
+.PageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/*__________LeftSide__________*/
+
+/*__________Formarting Text for <p> on both forms__________*/
+.formControl p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+/*__________Formatting Input Box__________*/
+.formControl input[type="text"], input[type="password"]{
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  /*__________User Input Text Format__________*/
+  color: #fff;
+  font-size: 16px;
+}
+
+/*__________Design Login Box End__________*/
+
+
+/*__________RightSide__________*/
+
+/*__________Formarting Input Box Width & Bottom Spacing__________*/
+.splitright-box input[type="radio"]{
+	margin-top: 10px;
+  margin-bottom: 30px;
+	outline: none;
+}
+
+/* Space the radio buttons from each other */
+.splitright-box label {
+  margin-right: 10px;
+}
+
+.SubmitButton {
+    width: 300px;
+    color: #fff;
+    bottom: 0%;
+    left: 38.5%;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+
+/*__________Formarting Submit Input Box__________*/
+.SubmitButton input[type="submit"]{
+  /*__________Background Box Format__________*/
+    border: none;
+    outline: none;
+    height: 40px;
+    border-radius: 20px;
+    background: #1c8adb;
+    /*__________Text Format__________*/
+    color: #fff;
+    font-size: 18px;
+    bottom: 50%;
+    right: 0%;
+}
+
+/*__________Formarting Input Box Width & Bottom Spacing__________*/
+.SubmitButton input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/*__________Hovering over Submit Input Box__________*/
+.SubmitButton input[type="submit"]:hover{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
+/*_________HyperLinks Formating______*/
+.hyperlink{
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  color: #fff;
+}
